@@ -1,0 +1,12 @@
+.setting{
+    position: absolute;    
+    height: 100%;
+    width: calc(100% - 240px);
+    left: 240px;    
+
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+
+    text-align: center;
+}
