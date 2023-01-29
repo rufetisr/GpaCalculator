@@ -223,7 +223,6 @@ const Home = () => {
     }
   }
   const Clear = () => {
-    if (count == 3) {
       let p = document.querySelectorAll('.point');
       let c = document.querySelectorAll('.credit')
       p.forEach(item => {
@@ -232,7 +231,6 @@ const Home = () => {
       c.forEach(item => {
         item.value = null;
       })
-    }
   }
 
   return (
