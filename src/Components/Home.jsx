@@ -235,7 +235,7 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <h4>Home Content</h4>
+      <h4>GPA Calculator</h4>
 
       <div className="calc-cont">
         <div className='select-cont'>

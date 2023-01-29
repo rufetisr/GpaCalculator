@@ -1,10 +1,10 @@
 .home {
     position: absolute;
-    height: 125vh;
+    height: 100%;
     width: calc(100% - 78px);
     left: 78px;
-    background-color: rgb(228, 248, 248);
-    z-index: 0;
+    /* background-color: rgb(228, 248, 248); */
+    /* z-index: 0; */
     font-size: 25px;
     font-weight: 500;
     color: #1d1b31;
