@@ -3,7 +3,7 @@ import './Home.css'
 import Section from './Section';
 import context from '../Context/Context';
 import { useContext } from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 let arr1 = [<Section />, <Section />, <Section />]
 
@@ -29,6 +29,7 @@ const Home = () => {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
       // console.log(typeof (p1));
+
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
@@ -223,14 +224,14 @@ const Home = () => {
     }
   }
   const Clear = () => {
-      let p = document.querySelectorAll('.point');
-      let c = document.querySelectorAll('.credit')
-      p.forEach(item => {
-        item.value = null;
-      })
-      c.forEach(item => {
-        item.value = null;
-      })
+    let p = document.querySelectorAll('.point');
+    let c = document.querySelectorAll('.credit')
+    p.forEach(item => {
+      item.value = null;      
+    })
+    c.forEach(item => {
+      item.value = null;
+    })
   }
 
   return (
@@ -257,7 +258,7 @@ const Home = () => {
             <span>Point</span>
             <span>Credit</span>
           </div>
-          <ul className='home-ul'>
+          <ol className='home-ul'>
             {
               arr1?.map((item, index) => {
                 return (
@@ -265,7 +266,7 @@ const Home = () => {
                 )
               })
             }
-          </ul>
+          </ol>
         </div>
         <div style={{ display: 'flex', padding: '12px' }} className='buttons'>
           <button onClick={Calc} >Calculate</button>

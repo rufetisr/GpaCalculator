@@ -13,7 +13,7 @@ const Section = () => {
     return (
         <div className='section' style={{ display: 'flex' }}>
             {/* <input type="text" className='subject' /> */}
-            <input type="number" className='point' ref={p}/>
+            <input type="number" className='point' ref={p} />
             <input type="number" className='credit' ref={c}/>
         </div>
     )
