@@ -8,7 +8,7 @@ import { useState, useRef } from 'react';
 let arr1 = [<Section />, <Section />, <Section />]
 
 const Home = () => {
-  const { count, setCount} = useContext(context);
+  const { count, setCount } = useContext(context);
   // const inp = useRef();
   // const { totalAct, setTotalAct } = useState('ac');
 
@@ -22,38 +22,17 @@ const Home = () => {
 
   const Calc = () => {
     let inpTotal = document.querySelector('#total');
-    
-    
+
     let total = 0;
-    // let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
-    // let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
-
-    // let p5 = document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value;
-    // let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
-
-    // let p6 = document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value;
-    // let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
-
-    // let p7 = document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value;
-    // let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
-
-    // let p8 = document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value;
-    // let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.lastElementChild.value);
-
-    // let p9 = document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value;
-    // let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.lastElementChild.value);
-
-    // console.log(p1, c1, p2, c2, p3, c3);
-    // console.log(p1 == '');
 
     if (count == 3) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
-
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      // console.log(typeof (p1));
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '') {
@@ -66,16 +45,16 @@ const Home = () => {
       }
     }
     else if (count == 4) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
 
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
-      let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
       let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '') {
@@ -88,19 +67,19 @@ const Home = () => {
       }
     }
     else if (count == 5) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
 
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
-      let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
       let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
 
-      let p5 = document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value;
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
       let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '') {
@@ -113,22 +92,22 @@ const Home = () => {
       }
     }
     else if (count == 6) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
 
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
-      let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
       let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
 
-      let p5 = document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value;
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
       let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
 
-      let p6 = document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value;
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
       let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '') {
@@ -141,25 +120,25 @@ const Home = () => {
       }
     }
     else if (count == 7) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
 
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
-      let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
       let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
 
-      let p5 = document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value;
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
       let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
 
-      let p6 = document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value;
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
       let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
 
-      let p7 = document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value;
+      let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
       let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '') {
@@ -172,28 +151,28 @@ const Home = () => {
       }
     }
     else if (count == 8) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
 
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
-      let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
       let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
 
-      let p5 = document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value;
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
       let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
 
-      let p6 = document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value;
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
       let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
 
-      let p7 = document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value;
+      let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
       let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
 
-      let p8 = document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value;
+      let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
       let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '') {
@@ -206,31 +185,31 @@ const Home = () => {
       }
     }
     else if (count == 9) {
-      let p1 = document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value;
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
       let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
 
-      let p2 = document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value;
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
       let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
 
-      let p3 = document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value;
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
       let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
 
-      let p4 = document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value;
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
       let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
 
-      let p5 = document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value;
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
       let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
 
-      let p6 = document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value;
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
       let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
 
-      let p7 = document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value;
+      let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
       let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
 
-      let p8 = document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value;
+      let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
       let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.lastElementChild.value);
 
-      let p9 = document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value;
+      let p9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value);
       let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.lastElementChild.value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '' && p9 != '' && c9 != '') {
@@ -242,20 +221,18 @@ const Home = () => {
         alert('Please fill everything!')
       }
     }
-    // console.log(p1);
-    // console.log(c1);
-
-    // console.log(p2);
-    // console.log(c2);
-
-    // console.log(p3);
-    // console.log(c3);
-
-    // console.log(p4);
-    // console.log(c4);
   }
   const Clear = () => {
-
+    if (count == 3) {
+      let p = document.querySelectorAll('.point');
+      let c = document.querySelectorAll('.credit')
+      p.forEach(item => {
+        item.value = null;
+      })
+      c.forEach(item => {
+        item.value = null;
+      })
+    }
   }
 
   return (
@@ -263,7 +240,6 @@ const Home = () => {
       <h4>Home Content</h4>
 
       <div className="calc-cont">
-        {/* Calc-cont */}
         <div className='select-cont'>
           <div className="home-text sel">Select count:</div>
           <select name="count" id="combobox" onChange={ChangeCount}>
@@ -278,9 +254,8 @@ const Home = () => {
         </div>
 
         <div className='list-cont'>
-          <input id='total' disabled placeholder='UOMG: '/>
+          <input id='total' disabled placeholder='UOMG: ' />
           <div className="header">
-            {/* <span>Subject Name</span> */}
             <span>Point</span>
             <span>Credit</span>
           </div>

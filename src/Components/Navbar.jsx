@@ -67,7 +67,7 @@ const Navbar = () => {
                                 Rufet Isr
                             </div>
                             <div className="job">
-                                Software Engineer
+                                Developer
                             </div>
                         </div>
                     </div>

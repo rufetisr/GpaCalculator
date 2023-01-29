@@ -1,6 +1,6 @@
 .home {
     position: absolute;
-    height: 100vh;
+    height: 125vh;
     width: calc(100% - 78px);
     left: 78px;
     background-color: rgb(228, 248, 248);
@@ -50,10 +50,10 @@
 
 .home #total {
     /* width: 110px; */
-    width: 80%;
+    width: 70%;
     text-align: center;
     box-sizing: border-box;
-    padding: 2px 4px;
+    padding: 2px 7px;
     height: 30px;
     opacity: 1;
     font-weight: 600;
@@ -167,6 +167,7 @@
 
     .navbar.active~.home .list-cont {
         margin: 0px;
+        /* height: 100vh; */
     }
 
     .navbar.active~.home .list-cont ul {
@@ -192,6 +193,7 @@
 
 .home .buttons {
     justify-content: center;
+    /* height: 100%; */
 }
 
 .home .buttons>button {
