@@ -225,7 +225,7 @@
 
     /* right: 0; */
 }
-.navbar.navbar.active .profile-content .profile {
+.navbar.active .profile-content .profile {
     background-color: #1d1b31;
 }
 
@@ -287,4 +287,10 @@
 
 .navbar.active .profile-content .profile #exit{
     background-color: none;
+}
+
+@media (min-width: 310px) and (max-width: 350px) {
+    .navbar.active {
+        height: 100vh;
+    }
 }

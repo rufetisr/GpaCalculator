@@ -119,7 +119,7 @@
 @media (min-width: 310px) and (max-width: 350px) {
     .navbar.active~.home {
         width: 78px;
-        height: 100vh;
+        height: 100%;
         /* height: 90vh; */
     }
 
