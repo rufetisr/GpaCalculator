@@ -20,9 +20,9 @@ function App() {
   }
 
   return (
-    <div className='app'>
-      <Context.Provider value={ data} >
-        <BrowserRouter>
+    <BrowserRouter>
+      <div className='app'>
+        <Context.Provider value={data} >
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />}></Route>
@@ -30,9 +30,9 @@ function App() {
             <Route path='/setting' element={<Setting />}></Route>
             <Route path='/user' element={<User />}></Route>
           </Routes>
-        </BrowserRouter>
-      </Context.Provider>
-    </div>
+        </Context.Provider>
+      </div>
+    </BrowserRouter>
   )
 }
 

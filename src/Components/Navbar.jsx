@@ -9,21 +9,24 @@ import * as RiIcons from 'react-icons/ri'
 import * as FaIcons from 'react-icons/fa'
 
 import { NavbarData } from './NavbarData';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IconContext } from 'react-icons/lib';
 import './Navbar.css'
 import { useState, useRef } from "react";
 
 const Navbar = () => {
     const [navActive, setNav] = useState('');
+    const navg = useNavigate();
 
-    const NavClick = (e)=>{
+    const NavClick = (e) => {
         navActive == 'active' ? setNav('') : setNav('active');
     }
-    const SearchClick = (e)=>{
+    const SearchClick = (e) => {
         setNav('active');
     }
-
+    const GoBack = () => {
+        navg(-1);
+    }
     return (
         <div className={`navbar ${navActive}`} >
 
@@ -32,7 +35,7 @@ const Navbar = () => {
                     <GiGraduateCap className='img' />
                     <div className="logo-name">GPA</div>
                 </div>
-                <FiIcons.FiMenu id='btn' onClick={NavClick} className={navActive}/>
+                <FiIcons.FiMenu id='btn' onClick={NavClick} className={navActive} />
             </div>
 
             <ul className="nav-list">
@@ -72,7 +75,9 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div id="exit">
-                        <BiIcons.BiLogOut />
+                        <button onClick={GoBack}>
+                            <BiIcons.BiLogOut />
+                        </button>
                     </div>
                 </div>
             </div>

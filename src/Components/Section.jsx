@@ -5,7 +5,7 @@ import context from '../Context/Context';
 
 const Section = () => {
     // const {po, setPo, cred, setCred} = useContext(context);
-    const inp = useRef(0);
+    // const inp = useRef(0);
     // const [value, setvalue] = useState();
     // const c = useRef();
     // setCred(c);
@@ -41,8 +41,8 @@ const Section = () => {
     return (
         <div className='section' style={{ display: 'flex' }}>
             {/* <input type="text" className='subject' /> */}
-            <input onChange={Change} type="number" className='point' min='0' max='100' ref={inp} onClick={(e)=>{e.target.select()}}/>
-            <input onChange={Change1} type="number" className='credit' min='0' max='20' ref={inp} onClick={(e)=>{e.target.select()}}/>
+            <input onChange={Change} type="number" className='point' min='0' max='100' onClick={(e)=>{e.target.select()}}/>
+            <input onChange={Change1} type="number" className='credit' min='0' max='20' onClick={(e)=>{e.target.select()}}/>
         </div>
     )
 }
