@@ -15,13 +15,13 @@ import './Navbar.css'
 import { useState, useRef } from "react";
 
 const Navbar = () => {
-    const [col, setcol] = useState('#fff');
     const [navActive, setNav] = useState('');
-    // const refNav = useRef('');   
 
     const NavClick = (e)=>{
-        // console.log(refBtn.className);
         navActive == 'active' ? setNav('') : setNav('active');
+    }
+    const SearchClick = (e)=>{
+        setNav('active');
     }
 
     return (
@@ -36,7 +36,7 @@ const Navbar = () => {
             </div>
 
             <ul className="nav-list">
-                <li className='search' onClick={NavClick}>
+                <li className='search' onClick={SearchClick}>
                     {/* <a href="#"> */}
                     <BsIcons.BsSearch className='box-search' />
                     <input type="text" placeholder='Search...' />

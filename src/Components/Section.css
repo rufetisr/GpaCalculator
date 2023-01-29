@@ -1,0 +1,25 @@
+.section{
+    /* width: 100%; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.section input{
+    width: 100%;
+    box-sizing: border-box;
+    height: 10px;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid rgb(0, 9, 139);
+    margin-right: 10px;
+    /* font-size: 16px; */
+    padding: 19px;
+    box-sizing: border-box;
+}
+
+.section input:nth-child(3){
+    width: 100%;
+    margin-right: 0px;
+}

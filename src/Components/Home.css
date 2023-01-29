@@ -1,12 +1,221 @@
-.home{
-    position: absolute;    
-    height: 100%;
-    width: calc(100% - 240px);
-    left: 240px;    
-
+.home {
+    position: absolute;
+    height: 100vh;
+    width: calc(100% - 78px);
+    left: 78px;
+    background-color: rgb(228, 248, 248);
+    z-index: 0;
     font-size: 25px;
     font-weight: 500;
     color: #1d1b31;
+    transition: all 0.5s ease;
+    /* text-align: center; */
+    padding: 8px 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
 
+.home h4 {
     text-align: center;
+}
+
+.home .calc-cont {
+    /* background-color: aliceblue; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* line-height: 30px; */
+    margin: 15px 0px;
+    height: 100%;
+    width: 100%;
+
+}
+
+.home .calc-cont .select-cont {
+    display: flex;
+    justify-content: flex-start;
+    /* justify-content: space-between; */
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.home .calc-cont .select-cont #combobox {
+    width: 60px;
+    font-size: 16px;
+    border-radius: 7px;
+    outline: none;
+    /* height: 20px; */
+}
+
+.home #total {
+    /* width: 110px; */
+    width: 80%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 2px 4px;
+    height: 30px;
+    opacity: 1;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid black;
+    /* margin-left: 50px; */
+    /* margin-bottom: 10px; */
+    color: #1d1b31;
+    /* margin: 0px; */
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0px 1px 18px 3px rgba(49, 12, 211, 0.91);
+    -moz-box-shadow: 0px 1px 18px 3px rgba(114, 34, 204, 0.91);
+    box-shadow: 0px 1px 18px 3px rgba(76, 28, 190, 0.91);
+
+}
+
+.home .calc-cont .select-cont #combobox option {
+    font-size: 16px;
+    /* text-align: left; */
+}
+
+.home-text {
+    font-size: large;
+}
+
+.home-text.sel {
+    margin-right: 15px;
+}
+
+.home .list-cont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    padding: 5px 7%;
+
+    /* background-color: antiquewhite; */
+}
+
+.home .list-cont ul {
+    list-style: none;
+    margin-top: 0px;
+    padding: 0px;
+    width: 220px;
+}
+
+.home .list-cont ul li {
+    margin-top: 8px;
+}
+
+.list-cont .header {
+    /* width: 100%; */
+    width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: large;
+    justify-content: space-around;
+}
+
+@media (min-width: 310px) and (max-width: 350px) {
+    .navbar.active~.home {
+        width: 78px;
+        height: 100vh;
+    }
+
+    .home-text {
+        font-size: 15px;
+        margin-right: 0px;
+    }
+
+    .navbar.active~.home .buttons>* {
+        width: 100%;
+        word-wrap: normal;
+        height: 10px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .navbar.active~.home h4 {
+        font-size: 16px;
+    }
+
+    .home .calc-cont {
+        margin: 0px;
+        /* height: 100%; */
+    }
+
+    .home .calc-cont .select-cont {
+        display: flex;
+        align-items: center;
+        /* flex-direction: column; */
+        /* height: 100%; */
+
+    }
+
+    .navbar.active~.home .list-cont ul li .section {
+        /* background-color: rebeccapurple; */
+        /* width: 78px; */
+        flex-wrap: wrap;
+        width: 100%;
+        /* height: 100%; */
+
+    }
+
+    .navbar.active~.home .list-cont ul li .section>input {
+        height: 10px;
+    }
+
+    .navbar.active~.home .list-cont {
+        margin: 0px;
+    }
+
+    .navbar.active~.home .list-cont ul {
+        width: 100%;
+        display: flex;
+        height: 100%;
+        margin: 0px;
+        flex-direction: column;
+    }
+
+    .navbar.active~.home .list-cont .header {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .home .calc-cont .select-cont #total {
+        margin: 5px;
+    }
+}
+
+
+
+
+.home .buttons {
+    justify-content: center;
+}
+
+.home .buttons>button {
+    border-radius: 12px;
+    outline: none;
+    width: 80px;
+    border: 0px;
+    padding: 10px;
+    background-color: #0057b4;
+    color: #fff;
+    border-color: #026ad8;
+    font-size: 13px;
+    margin-right: 25px;
+    cursor: pointer;
+    transition: 0.4s;
+    font-weight: 500;
+    /* font-family: sans-serif; */
+}
+
+.home .buttons>button:nth-child(2) {
+    background-color: red;
+    margin: 0px;
+}
+
+.home .buttons>button:hover {
+    background-color: #2a2563;
 }
