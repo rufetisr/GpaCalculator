@@ -163,7 +163,9 @@
 .navbar.active #btn {
     left: 90%;
 }
-
+.navbar.active ul li .tooltip {
+    display: none;
+}
 .navbar.active ul li .nav-text span {
     opacity: 1;
     pointer-events: auto;
