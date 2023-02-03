@@ -114,8 +114,7 @@
     display: flex;
     align-items: baseline;
     text-decoration: none;
-    border-radius: 12px;
-    /* transition: 0.4ms; */
+    border-radius: 12px;    
     color: #fff;
     white-space: nowrap;
     font-size: large;
@@ -127,7 +126,56 @@
     transition: all 0.5s ease;
 }
 
-@media (min-width: 410px) {
+@media (max-width: 519px) {
+
+.navbar.active~.home {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+.navbar.active~.faq {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+.navbar.active~.user-cont {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+.navbar.active~.setting {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+
+.navbar.active {
+    width: 240px;
+}
+.navbar.active .logo-content .logo {
+    opacity: 1;
+    pointer-events: none;
+}
+.navbar.active #btn {
+    left: 90%;
+}
+
+.navbar.active ul li .nav-text span {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.navbar.active .profile .profile-details {
+    opacity: 1;
+    width: 85%;
+    pointer-events: auto;
+}
+}
+@media (min-width: 520px) {
 
     .navbar.active~.home {
         width: calc(100% - 240px);
@@ -162,9 +210,7 @@
         display: none;
     }
 
-    /* .navbar * {
-    color: #fff;
-} */
+
     .navbar.active #btn {
         left: 90%;
     }
@@ -276,7 +322,7 @@
     /* right: 0; */
 }
 
-@media (min-width: 410px) {
+@media (min-width: 520px) {
 
     .navbar.active .profile-content .profile {
         background-color: #1d1b31;
@@ -293,7 +339,7 @@
     transition: all 0.5s ease;
 }
 
-@media (min-width: 410px) {
+@media (min-width: 520px) {
 
     .navbar.active .profile .profile-details {
         opacity: 1;
