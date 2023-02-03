@@ -211,9 +211,7 @@
         display: none;
     }
 
-    /* .navbar * {
-    color: #fff;
-} */
+
     .navbar.active #btn {
         left: 90%;
     }
