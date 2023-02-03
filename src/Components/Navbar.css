@@ -114,8 +114,7 @@
     display: flex;
     align-items: baseline;
     text-decoration: none;
-    border-radius: 12px;
-    /* transition: 0.4ms; */
+    border-radius: 12px;    
     color: #fff;
     white-space: nowrap;
     font-size: large;
