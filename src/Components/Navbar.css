@@ -276,7 +276,7 @@
     /* right: 0; */
 }
 
-@media (min-width: 490px) {
+@media (min-width: 410px) {
 
     .navbar.active .profile-content .profile {
         background-color: #1d1b31;
@@ -293,7 +293,7 @@
     transition: all 0.5s ease;
 }
 
-@media (min-width: 490px) {
+@media (min-width: 410px) {
 
     .navbar.active .profile .profile-details {
         opacity: 1;
@@ -349,8 +349,3 @@
     background-color: none;
 }
 
-@media (min-width: 310px) and (max-width: 350px) {
-    .navbar.active {
-        height: 100vh;
-    }
-}

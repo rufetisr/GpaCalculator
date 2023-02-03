@@ -7,7 +7,7 @@ import * as BsIcons from 'react-icons/bs'
 import * as AiIcons from 'react-icons/ai'
 import * as RiIcons from 'react-icons/ri'
 import * as FaIcons from 'react-icons/fa'
-
+import user1 from '../assets/user1.jpg'
 import { NavbarData } from './NavbarData';
 import { Link, useNavigate } from 'react-router-dom'
 import { IconContext } from 'react-icons/lib';
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="profile-content">
                 <div className="profile">
                     <div className="profile-details">
-                        <img src="src\assets\user1.jpg" alt="" />
+                        <img src={user1} alt="" />
                         <div className="name-job">
                             <div className="name">
                                 Rufet Isr
