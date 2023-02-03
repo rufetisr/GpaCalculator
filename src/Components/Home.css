@@ -10,7 +10,7 @@
     color: #1d1b31;
     transition: all 0.5s ease;
     /* text-align: center; */
-    padding: 8px 10px;
+    padding: 8px 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -100,7 +100,7 @@
     /* list-style: none; */
     margin-top: 0px;
     padding: 0px;
-    width: 220px;
+    /* width: 220px; */
 }
 
 .home .list-cont ol li {

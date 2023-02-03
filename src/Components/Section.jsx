@@ -14,7 +14,7 @@ const Section = () => {
         let num = +e.target.value;
         console.log(num +1);
         if (num < 0 || num > 100) {
-            alert('You can give 1 and 100');
+            alert('You can give between 0 and 100');
         }
         if (num > 100) {
             e.target.value = 100;
@@ -27,7 +27,7 @@ const Section = () => {
     const Change1 = (e) => {
         let num = +e.target.value;
         if (num < 0 || num > 20) {
-            alert('You can give 1 and 20');            
+            alert('You can give between 0 and 20');            
         }
         if (num > 20) {
             e.target.value = 20;

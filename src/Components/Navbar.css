@@ -127,7 +127,56 @@
     transition: all 0.5s ease;
 }
 
-@media (min-width: 410px) {
+@media (max-width: 410px) {
+
+.navbar.active~.home {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+.navbar.active~.faq {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+.navbar.active~.user-cont {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+.navbar.active~.setting {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+}
+
+.navbar.active {
+    width: 240px;
+}
+.navbar.active .logo-content .logo {
+    opacity: 1;
+    pointer-events: none;
+}
+.navbar.active #btn {
+    left: 90%;
+}
+
+.navbar.active ul li .nav-text span {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.navbar.active .profile .profile-details {
+    opacity: 1;
+    width: 85%;
+    pointer-events: auto;
+}
+}
+@media (min-width: 520px) {
 
     .navbar.active~.home {
         width: calc(100% - 240px);
@@ -276,7 +325,7 @@
     /* right: 0; */
 }
 
-@media (min-width: 410px) {
+@media (min-width: 520px) {
 
     .navbar.active .profile-content .profile {
         background-color: #1d1b31;
@@ -293,7 +342,7 @@
     transition: all 0.5s ease;
 }
 
-@media (min-width: 410px) {
+@media (min-width: 52F0px) {
 
     .navbar.active .profile .profile-details {
         opacity: 1;
