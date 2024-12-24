@@ -74,8 +74,7 @@ function App() {
         ...prev,
         username: data?.username,
         email: data?.email,
-      }));
-      window.location.reload();
+      }));     
     } catch (error) {
       toast.warn('Something went wrong!')
     }
