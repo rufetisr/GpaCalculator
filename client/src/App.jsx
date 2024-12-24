@@ -70,10 +70,11 @@ function App() {
       }
       // console.log(data.data);
       const data = await res.json();
-      setUser({
+      setUser(prev => ({
+        ...prev,
         username: data?.username,
         email: data?.email,
-      });
+      }));
     } catch (error) {
       toast.warn('Something went wrong!')
     }
