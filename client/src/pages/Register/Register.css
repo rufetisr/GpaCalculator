@@ -1,0 +1,42 @@
+.register-div button {
+    outline: none;
+    background-color: aquamarine;
+    border: 0px;
+    border-radius: 10px;
+    padding: 7px 16px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.register-div button:active {
+    transform: scale(0.9);
+}
+
+.register-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.register-div input {
+    padding: 6px 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+    max-width: 300px;
+    background-color: rgb(226, 215, 215);
+}
+
+.register-div form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-div .hide-btn {
+    position: relative;
+    top: 39px;
+    left: 89%;
+}

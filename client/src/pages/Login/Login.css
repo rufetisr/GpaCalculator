@@ -1,0 +1,42 @@
+.login-div button {
+    outline: none;
+    background-color: aquamarine;
+    border: 0px;
+    border-radius: 10px;
+    padding: 7px 16px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.login-div button:active {
+    transform: scale(0.9);
+}
+
+.login-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.login-div input {
+    padding: 6px 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 0px;
+    max-width: 300px;
+    background-color: rgb(226, 215, 215);
+}
+
+.login-div form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-div .hide-btn {
+    position: relative;
+    top: 39px;
+    left: 89%;
+}
