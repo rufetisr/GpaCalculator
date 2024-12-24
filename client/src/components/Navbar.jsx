@@ -19,13 +19,13 @@ import context from '../context/Context';
 const Navbar = () => {
     const [navActive, setNav] = useState('');
     const navg = useNavigate();
-    const { user } = useContext(context);
-    const [showModal, setShowModal] = useState(false);
+    const { user, setShowModal } = useContext(context);
+    const [showModal1, setShowModal1] = useState(false);
     const [modalText, setModalText] = useState('You want to logout from the website?');
     let token = localStorage.getItem('token');
 
     const handleClose = () => {
-        setShowModal(false);
+        setShowModal1(false);
     }
 
     const NavClick = (e) => {
@@ -34,10 +34,10 @@ const Navbar = () => {
 
     const logOut = () => {
         if (token) {
-
+            setShowModal(false);
             localStorage.removeItem('token')
-            navg('/login')
         }
+        navg('/login')
     }
     return (
         <div className={`navbar ${navActive}`} >
@@ -85,13 +85,13 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div id="exit">
-                        <button onClick={() => setShowModal(true)}>
+                        <button onClick={() => setShowModal1(true)}>
                             <BiIcons.BiLogOut />
                         </button>
                     </div>
                 </div>
             </div>
-            <Modal show={showModal} onHide={handleClose}>
+            <Modal show={showModal1} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Information</Modal.Title>
                 </Modal.Header>

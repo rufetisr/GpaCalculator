@@ -80,7 +80,7 @@ function App() {
   }
 
   useEffect(() => {
-
+    setShowModal(false)
     if (token) {
       // setModalText('Your session has expired. Please sign in again.')
       // setShowModal(true)

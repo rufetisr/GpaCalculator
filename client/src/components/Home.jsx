@@ -28,15 +28,13 @@ const Home = () => {
   const handleClose = () => setShowModal(false);
 
   useEffect(() => {
-    setShowModal(false);
-    if (!token) {
-      setShowModal(true);
-      // toast.warn('You need to login first!')
-    }
-    else if (isTokenExpired(token)) {
+    if (isTokenExpired(token) && token) {
       setModalText('Your session has expired. Please sign in again.')
       setShowModal(true)
     }
+    // else{
+
+    // }
 
 
   }, []);
@@ -59,6 +57,8 @@ const Home = () => {
       // toast.warn('You need to login first!')
     }
     else {
+      setShowModal(false)
+
       let pointsAndCredits = {
         points: [],
         credits: []
