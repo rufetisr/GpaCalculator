@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate  } from 'react-router-dom'
+import { BrowserRouter, Routes, Route  } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import Home from './components/Home'
@@ -22,7 +22,6 @@ function App() {
   const [po, setPo] = useState();
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState('You need to login first!');
-   const navigate = useNavigate();
   const server_url = import.meta.env.VITE_SERVER_URL;
   let token = localStorage.getItem('token');
 
@@ -76,7 +75,7 @@ function App() {
         username: data?.username,
         email: data?.email,
       }));
-       navigate(0);
+      window.location.reload();
     } catch (error) {
       toast.warn('Something went wrong!')
     }
