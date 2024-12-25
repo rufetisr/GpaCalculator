@@ -25,7 +25,7 @@ const Navbar = () => {
     let token = localStorage.getItem('token');
 
     const handleClose = () => {
-        setShowModal1(false);
+        setShowModal(false);
     }
 
     const NavClick = (e) => {
@@ -34,10 +34,10 @@ const Navbar = () => {
 
     const logOut = () => {
         if (token) {
-            setShowModal(false);
+
             localStorage.removeItem('token')
+            navg('/login')
         }
-        navg('/login')
     }
     return (
         <div className={`navbar ${navActive}`} >
@@ -85,13 +85,13 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div id="exit">
-                        <button onClick={() => setShowModal1(true)}>
+                        <button onClick={() => setShowModal(true)}>
                             <BiIcons.BiLogOut />
                         </button>
                     </div>
                 </div>
             </div>
-            <Modal show={showModal1} onHide={handleClose}>
+            <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Information</Modal.Title>
                 </Modal.Header>
