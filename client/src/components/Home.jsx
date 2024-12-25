@@ -36,8 +36,6 @@ const Home = () => {
     if (isExpired) {
       setModalText('Your session has expired. Please sign in again.');
       setShowModal(true);
-    } else {
-      setShowModal(false);
     }
   }, []);
 
@@ -54,7 +52,7 @@ const Home = () => {
 
   const Save = async () => {
 
-    let token = localStorage.getItem('token') || false;
+    let token = localStorage.getItem('token')
     if (!token) {
       setShowModal(true);
       // toast.warn('You need to login first!')
