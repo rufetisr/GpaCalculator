@@ -12,7 +12,6 @@ const Section = () => {
     // setPo(p);
     const Change = (e) => {
         let num = +e.target.value;
-        console.log(num + 1);
         if (num < 0 || num > 100) {
             alert('You can give between 0 and 100');
         }
@@ -22,7 +21,6 @@ const Section = () => {
         else if (num < 0) {
             e.target.value = 0;
         }
-        // console.log(e.target.value);
     }
     const Change1 = (e) => {
         let num = +e.target.value;
@@ -35,7 +33,6 @@ const Section = () => {
         else if (num < 0) {
             e.target.value = 0;
         }
-        // console.log(e.target.value);
     }
 
     return (
@@ -43,6 +40,7 @@ const Section = () => {
             {/* <input type="text" className='subject' /> */}
             <input onChange={Change} type="number" className='point' min='0' max='100' onClick={(e) => { e.target.select() }} onFocus={(e) => { e.currentTarget.style.backgroundColor = '#e4e6e7' }} onBlur={(e) => { e.currentTarget.style.backgroundColor = 'white' }} />
             <input onChange={Change1} type="number" className='credit' min='0' max='20' onClick={(e) => { e.target.select() }} onFocus={(e) => { e.currentTarget.style.backgroundColor = '#e4e6e7' }} onBlur={(e) => { e.currentTarget.style.backgroundColor = 'white' }} />
+            <input type="text" className='subject' min='0' max='20' onClick={(e) => { e.target.select() }} onFocus={(e) => { e.currentTarget.style.backgroundColor = '#e4e6e7' }} onBlur={(e) => { e.currentTarget.style.backgroundColor = 'white' }} />
         </div>
     )
 }

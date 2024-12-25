@@ -4,11 +4,14 @@ import LoginSchema from './LoginSchema';
 import { toast, ToastContainer } from 'react-toastify'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import './Login.css'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import context from '../../context/Context';
 
 function Login() {
+    // const { setUser } = useContext(context);
+
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const handleClose = () => setShowModal(false);
@@ -25,7 +28,6 @@ function Login() {
         },
         validationSchema: LoginSchema,
         onSubmit: async (values) => {
-            // console.log(values);
             try {
                 const res = await fetch(`${server_url}/login`, {
                     method: 'POST',
@@ -36,7 +38,6 @@ function Login() {
                 })
 
                 const data = await res.json();
-                // console.log(data);
                 if (!res.ok) {
 
                     if (res.status == 403) {
@@ -50,7 +51,9 @@ function Login() {
                 }
                 else if (data.statusCode == 200) {
                     toast.success(data.message)
+
                     localStorage.setItem('token', data.token)
+
                     setTimeout(() => {
                         navigate('/home')
                     }, 1200)

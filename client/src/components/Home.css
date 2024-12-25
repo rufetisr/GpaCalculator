@@ -121,12 +121,12 @@
 }
 
 .list-cont .header {
-    /* width: 100%; */
-    width: 220px;
+    width: 100%;
+    max-width: 420px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     font-size: large;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 /* @media (min-width: 310px) and (max-width: 350px) {
