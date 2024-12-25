@@ -27,19 +27,20 @@ const Home = () => {
 
   const handleClose = () => setShowModal(false);
 
+
+
   useEffect(() => {
-    setShowModal(false);
-    if (!token) {
+
+    const isExpired = isTokenExpired(token);
+
+    if (isExpired) {
+      setModalText('Your session has expired. Please sign in again.');
       setShowModal(true);
-      // toast.warn('You need to login first!')
+    } else {
+      setShowModal(false);
     }
-    else if (isTokenExpired(token)) {
-      setModalText('Your session has expired. Please sign in again.')
-      setShowModal(true)
-    }
-
-
   }, []);
+
 
 
 
@@ -61,35 +62,46 @@ const Home = () => {
     else {
       let pointsAndCredits = {
         points: [],
-        credits: []
+        credits: [],
+        subjects: [],
       }
 
       for (let i = 0; i < count; i++) {
         pointsAndCredits.points.push(Number(document.querySelector('.home-ul').children[i].firstElementChild.firstElementChild.value));
-        pointsAndCredits.credits.push(Number(document.querySelector('.home-ul').children[i].firstElementChild.lastElementChild.value));
+        pointsAndCredits.credits.push(Number(document.querySelector('.home-ul').children[i].firstElementChild.children[1].value));
+        pointsAndCredits.subjects.push(document.querySelector('.home-ul').children[i].firstElementChild.lastElementChild.value);
       }
+
 
       // Check if all elements in both arrays are zero
       const allPointsZero = pointsAndCredits.points.every(point => point === 0);
       const allCreditsZero = pointsAndCredits.credits.every(credit => credit === 0);
+      const allSubjectsZero = pointsAndCredits.subjects.every(subjt => subjt == false);
 
 
-      if (allPointsZero || allCreditsZero) {
+      if (allPointsZero || allCreditsZero || allSubjectsZero) {
         toast.warn('Please fill all the fields!')
       }
 
       else {
+        try {
+          const res = await fetch(`${server_url}/save-data`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(pointsAndCredits),
+          })
 
-        const res = await fetch(`${server_url}/save-data`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify(pointsAndCredits),
-        })
+          const data = await res.json();
+          if (res.ok) {
+            toast.success(data.message)
+          }
+        } catch (error) {
+          toast.error(error.message)
+        }
 
-        const data = await res.json();
       }
     }
   }
@@ -99,21 +111,56 @@ const Home = () => {
 
     let total = 0;
 
-    if (count == 3) {
+    if (count == 1) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
-      // console.log(typeof (p1));
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
+
+      if (p1 != '' && c1 != '') {
+        total = (p1 * c1) / (c1);
+        total = total.toFixed(3);
+        inpTotal.value = `GPA: ${total}`;
+      }
+      else {
+        // alert('Please fill everything!')
+        toast.warn('Please fill all the fields!')
+      }
+    }
+    else if (count == 2) {
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
+
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
+
+
+
+
+      if (p1 != '' && p2 != '' && c1 != '' && c2 != '') {
+        total = (p1 * c1 + p2 * c2) / (c1 + c2);
+        total = total.toFixed(3);
+        inpTotal.value = `GPA: ${total}`;
+      }
+      else {
+        // alert('Please fill everything!')
+        toast.warn('Please fill all the fields!')
+      }
+    }
+    else if (count == 3) {
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
+
+
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3) / (c1 + c2 + c3);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         // alert('Please fill everything!')
@@ -122,21 +169,21 @@ const Home = () => {
     }
     else if (count == 4) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
-      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3 + p4 * c4) / Number(c1 + c2 + c3 + c4);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         alert('Please fill everything!')
@@ -144,24 +191,24 @@ const Home = () => {
     }
     else if (count == 5) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
-      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
 
       let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
-      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3 + p4 * c4 + p5 * c5) / Number(c1 + c2 + c3 + c4 + c5);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         alert('Please fill everything!')
@@ -169,27 +216,27 @@ const Home = () => {
     }
     else if (count == 6) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
-      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
 
       let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
-      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
 
       let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
-      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3 + p4 * c4 + p5 * c5 + p6 * c6) / Number(c1 + c2 + c3 + c4 + c5 + c6);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         alert('Please fill everything!')
@@ -197,30 +244,30 @@ const Home = () => {
     }
     else if (count == 7) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
-      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
 
       let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
-      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
 
       let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
-      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
 
       let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
-      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
+      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3 + p4 * c4 + p5 * c5 + p6 * c6 + p7 * c7) / Number(c1 + c2 + c3 + c4 + c5 + c6 + c7);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         alert('Please fill everything!')
@@ -228,33 +275,33 @@ const Home = () => {
     }
     else if (count == 8) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
-      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
 
       let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
-      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
 
       let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
-      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
 
       let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
-      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
+      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.children[1].value);
 
       let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
-      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.lastElementChild.value);
+      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3 + p4 * c4 + p5 * c5 + p6 * c6 + p7 * c7 + p8 * c8) / Number(c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         alert('Please fill everything!')
@@ -262,36 +309,36 @@ const Home = () => {
     }
     else if (count == 9) {
       let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
-      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.lastElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
 
       let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
-      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.lastElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
 
       let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
-      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.lastElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
 
       let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
-      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.lastElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
 
       let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
-      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.lastElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
 
       let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
-      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.lastElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
 
       let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
-      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.lastElementChild.value);
+      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.children[1].value);
 
       let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
-      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.lastElementChild.value);
+      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.children[1].value);
 
       let p9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value);
-      let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.lastElementChild.value);
+      let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.children[1].value);
 
       if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '' && p9 != '' && c9 != '') {
         total = (p1 * c1 + p2 * c2 + p3 * c3 + p4 * c4 + p5 * c5 + p6 * c6 + p7 * c7 + p8 * c8 + p9 * c9) / Number(c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9);
         total = total.toFixed(3);
-        inpTotal.value = `UOMG: ${total}`;
+        inpTotal.value = `GPA: ${total}`;
       }
       else {
         alert('Please fill everything!')
@@ -317,7 +364,7 @@ const Home = () => {
         <div className='select-cont'>
           <div className="home-text sel">Select count:</div>
           <select value={count} name="count" id="combobox" onChange={ChangeCount}>
-            {[3, 4, 5, 6, 7, 8, 9].map((num) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
               <option key={num} value={num}>
                 {num}
               </option>
@@ -326,10 +373,11 @@ const Home = () => {
         </div>
 
         <div className='list-cont'>
-          <input id='total' disabled placeholder='UOMG: ' />
+          <input id='total' disabled placeholder='GPA: ' />
           <div className="header">
             <span>Point</span>
             <span>Credit</span>
+            <span>Subject</span>
           </div>
           <ol className='home-ul'>
             {

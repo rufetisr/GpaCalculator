@@ -45,7 +45,6 @@ const Saved = () => {
 
             setData(data?.data);
         } catch (error) {
-            // console.log(error);
 
         }
 
@@ -65,7 +64,6 @@ const Saved = () => {
             })
 
             const resData = await res.json();
-            // console.log(resData);
 
             const updatedData = data.filter((item, i) => {
                 return i != deleteIndex
@@ -74,7 +72,6 @@ const Saved = () => {
             handleClose();
 
         } catch (error) {
-            // console.log(error);
 
         }
     };
@@ -88,6 +85,7 @@ const Saved = () => {
                     <thead>
                         <tr>
                             <th>Index</th>
+                            <th>Subject</th>
                             <th>Point</th>
                             <th>Credit</th>
                             <th>GPA</th>
@@ -102,6 +100,11 @@ const Saved = () => {
                             data?.length != 0 ? data?.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
+                                    <td>
+                                        {item.subject.map((subj, i) => (
+                                            <div key={i}>{subj}</div>
+                                        ))}
+                                    </td>
                                     <td>
                                         {item.point.map((point, i) => (
                                             <div key={i}>{point}</div>

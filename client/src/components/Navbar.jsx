@@ -21,7 +21,7 @@ const Navbar = () => {
     const navg = useNavigate();
     const { user } = useContext(context);
     const [showModal, setShowModal] = useState(false);
-    const [modalText, setModalText] = useState('You want to logout from the website?');
+    const [modalText, setModalText] = useState('You want to logout from this account ?');
     let token = localStorage.getItem('token');
 
     const handleClose = () => {
@@ -75,11 +75,11 @@ const Navbar = () => {
 
                         <div className="name-job">
                             <div className="name">
-                                {user?.username || 'no user'}
+                                {token ? JSON.parse(localStorage.getItem('user'))?.username : 'no user'}
                                 {/* {'user'} */}
                             </div>
                             <div className="job">
-                                {user?.email || 'no email'}
+                                {token ? JSON.parse(localStorage.getItem('user'))?.email : 'no email'}
 
                             </div>
                         </div>

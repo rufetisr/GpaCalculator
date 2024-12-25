@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import RegisterSchema from './RegisterSchema';
@@ -6,13 +6,18 @@ import { toast, ToastContainer } from 'react-toastify'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import './Register.css'
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import context from '../../context/Context';
 
 const Register = () => {
+    const { modalText, setModalText } = useContext(context);
 
     const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const handleClose = () => setShowModal(false);
 
     const server_url = import.meta.env.VITE_SERVER_URL;
-    console.log(server_url);
 
     const navigate = useNavigate();
 
@@ -24,7 +29,6 @@ const Register = () => {
         },
         validationSchema: RegisterSchema,
         onSubmit: async (values) => {
-            console.log(values);
             try {
                 const res = await fetch(`${server_url}/create-account`, {
                     method: 'POST',
@@ -40,13 +44,18 @@ const Register = () => {
                     throw new Error(data.message);
                 }
                 if (data.statusCode == 201) {
-                    toast.success(data.message)
+                    setShowModal(true)
+                    setModalText(data.message)
+                    localStorage.setItem('user', JSON.stringify({
+                        username: values.username,
+                        email: values.email,
+                    }))
+                    // toast.success(data.message)
                     setTimeout(() => {
                         // navigate('/login')
                     }, 1300)
                 }
             } catch (error) {
-                console.log(error.message);
 
                 toast.error(error.message)
 
@@ -86,6 +95,20 @@ const Register = () => {
             </form>
             <Link to='/login'>Already have an account ?</Link>
             <ToastContainer />
+            <Modal show={showModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Information</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{modalText}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }

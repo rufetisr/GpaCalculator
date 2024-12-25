@@ -29,6 +29,7 @@ function App() {
     username: "",
     email: "",
   });
+
   // 
 
   // const location = useLocation()
@@ -48,49 +49,6 @@ function App() {
       <div>{children}</div>
     </div>
   );
-
-  const fetchUser = async () => {
-    try {
-      const res = await fetch(`${server_url}/get-userdata`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token}`
-        },
-      })
-
-      if (!res.ok) {
-        const data = await res.json();
-        if (res.status == 429) {
-
-          throw new Error(data.message)
-        }
-        throw new Error(data.message || 'Something went wrong!')
-
-      }
-      // console.log(data.data);
-      const data = await res.json();
-      setUser({
-        username: data?.username,
-        email: data?.email,
-      });
-    } catch (error) {
-      toast.warn('Something went wrong!')
-    }
-  }
-
-  useEffect(() => {
-
-    if (token) {
-      // setModalText('Your session has expired. Please sign in again.')
-      // setShowModal(true)
-      fetchUser();
-    }
-
-
-  }, []);
-
-
 
   return (
     <BrowserRouter>
