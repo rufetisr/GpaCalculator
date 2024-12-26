@@ -36,6 +36,8 @@ const Navbar = () => {
         if (token) {
 
             localStorage.removeItem('token')
+            localStorage.removeItem('user')
+
             navg('/login')
         }
     }

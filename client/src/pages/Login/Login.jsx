@@ -53,6 +53,10 @@ function Login() {
                     toast.success(data.message)
 
                     localStorage.setItem('token', data.token)
+                    localStorage.setItem('user', JSON.stringify({
+                        username: data?.data?.username,
+                        email: data?.data?.email,
+                    }))
 
                     setTimeout(() => {
                         navigate('/home')

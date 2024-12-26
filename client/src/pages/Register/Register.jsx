@@ -46,10 +46,7 @@ const Register = () => {
                 if (data.statusCode == 201) {
                     setShowModal(true)
                     setModalText(data.message)
-                    localStorage.setItem('user', JSON.stringify({
-                        username: values.username,
-                        email: values.email,
-                    }))
+
                     // toast.success(data.message)
                     setTimeout(() => {
                         // navigate('/login')

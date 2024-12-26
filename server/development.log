@@ -36,3 +36,5 @@
 2024-12-26 00:00:12 [INFO]: POST - / from localhost, body: {"points":[15,11.5],"credits":[1,1],"subjects":["Image-1","Image-1"]}, params: {}
 2024-12-26 00:02:37 [INFO]: POST - / from localhost, body: {"points":[15.5,18],"credits":[3,3],"subjects":["Meta-1","Meta-2"]}, params: {}
 2024-12-26 00:04:03 [INFO]: Connected to MongoDb
+2024-12-26 10:13:27 [INFO]: Connected to MongoDb
+2024-12-26 10:38:55 [INFO]: Connected to MongoDb
