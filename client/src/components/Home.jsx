@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import isTokenExpired from '../utils/isTokenExpired'
+import logo from '../assets/logo1.png'
 
 let arr1 = [<Section />, <Section />, <Section />]
 
@@ -401,6 +402,20 @@ const Home = () => {
           </button>
         </div>
       </div>
+
+      <footer className='footer'>
+        <a href="https://portfolio-70u8.onrender.com/" target='_blank'>
+          rufat
+          <img src={logo} alt="logo" className="logo" />
+        </a><br></br>
+        <span className='small-text'>web developer</span>
+
+        <div className='flex'>
+          <p className='small-text'>Built by <a className='owner' href="https://portfolio-70u8.onrender.com/" target='_blank'>rufat isgander</a> </p>
+          <span className='smaller-text'>© personal website 2023</span>
+        </div>
+      </footer >
+
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Information</Modal.Title>
@@ -416,7 +431,7 @@ const Home = () => {
         </Modal.Footer>
       </Modal>
       <ToastContainer />
-    </div>
+    </div >
   );
 }
 
