@@ -33,6 +33,9 @@ const Home = () => {
 
     const isExpired = isTokenExpired(token);
 
+    if (token) {
+      setShowModal(false)
+    }
     if (isExpired) {
       setModalText('Your session has expired. Please sign in again.');
       setShowModal(true);
