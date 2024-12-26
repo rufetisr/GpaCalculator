@@ -8,6 +8,12 @@
     cursor: pointer;
 }
 
+.login-div .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
 .login-div button:active {
     transform: scale(0.9);
 }

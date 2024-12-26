@@ -81,7 +81,9 @@ function Login() {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
-                <input onChange={handleChange} type="email" id="email" required />
+                <input onChange={handleChange} type="email" id="email" />
+                {errors.email && <span className="error-message">{errors.email}</span>}
+
                 {
                     show == true ?
                         <FaEye className='hide-btn' onClick={showHidePassword} />
@@ -91,7 +93,8 @@ function Login() {
                 }
                 <div style={{ display: 'flex', flexDirection: 'column', marginTop: '-10px' }}>
                     <label htmlFor="password">Password</label>
-                    <input onChange={handleChange} type={!show ? "password" : "text"} id="password" required />
+                    <input onChange={handleChange} type={!show ? "password" : "text"} id="password" />
+                    {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
 
                 <button type='submit'>Login</button>

@@ -73,9 +73,11 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor="username">Username</label>
-                <input onChange={handleChange} type="text" id="username" required /><div></div>
+                <input onChange={handleChange} type="text" id="username" /><div></div>
+                {errors.username && <span className="error-message">{errors.username}</span>}
                 <label htmlFor="email">Email</label>
-                <input onChange={handleChange} type="email" id="email" required />
+                <input onChange={handleChange} type="email" id="email" />
+                {errors.email && <span className="error-message">{errors.email}</span>}
                 {
                     show == true ?
                         <FaEye className='hide-btn' onClick={showHidePassword} />
@@ -86,7 +88,9 @@ const Register = () => {
 
                 <div style={{ display: 'flex', flexDirection: 'column', marginTop: '-10px' }}>
                     <label htmlFor="password">Password</label>
-                    <input onChange={handleChange} type={!show ? "password" : "text"} id="password" required />
+                    <input onChange={handleChange} type={!show ? "password" : "text"} id="password" />
+                    {errors.password && <span className="error-message">{errors.password}</span>}
+
                 </div>
                 <button type='submit'>Register</button>
             </form>

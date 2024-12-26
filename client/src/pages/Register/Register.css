@@ -8,6 +8,12 @@
     cursor: pointer;
 }
 
+.register-div .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
 .register-div button:active {
     transform: scale(0.9);
 }
