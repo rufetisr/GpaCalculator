@@ -27,7 +27,7 @@ const requestLogger = require('./middleware/loggerMiddleware');
 
 // public folder
 app.use(express.static('public'));
-app.use(['/get-userdata', '/create-account'], limiter);
+app.use(['/get-userdata', '/create-account', '/verify-email'], limiter);
 
 app.use(cors({
     origin: `${client_url}`,
