@@ -14,7 +14,7 @@ import './Navbar.css'
 import { useState, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import context from '../context/Context';
+import context from '../../context/Context';
 
 const Navbar = () => {
     const [navActive, setNav] = useState('');

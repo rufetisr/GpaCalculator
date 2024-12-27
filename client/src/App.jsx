@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Faq from './components/Faq'
-import Setting from './components/Setting'
-import User from './components/User'
+import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home'
+import Faq from './components/Faq/Faq'
+import Setting from './components/Setting/Setting'
+import User from './components/User/User'
 
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Context from "./context/Context";
 
 import './App.css'
-import Saved from './components/Saved'
+import Saved from './components/Saved/Saved'
 import isTokenExpired from './utils/isTokenExpired'
 import { toast } from 'react-toastify'
 

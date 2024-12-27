@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import './Home.css'
-import Section from './Section';
-import context from '../context/Context';
+import Section from '../Section/Section';
+import context from '../../context/Context';
 import { useContext } from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { LuDownload } from "react-icons/lu";
@@ -10,8 +10,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import isTokenExpired from '../utils/isTokenExpired'
-import logo from '../assets/logo1.png'
+import isTokenExpired from '../../utils/isTokenExpired'
+import logo from '../../assets/logo1.png'
 
 let arr1 = [<Section />, <Section />, <Section />]
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Section.css'
 import { useRef, useContext, useState } from "react";
-import context from '../context/Context';
+import context from '../../context/Context';
 
 const Section = () => {
     // const {po, setPo, cred, setCred} = useContext(context);
