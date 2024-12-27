@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import calc from '../utils/calc';
+import calc from '../../utils/calc';
 
 
 const Saved = () => {
 
     let token = localStorage.getItem('token');
+    let user = localStorage.getItem('user');
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalText, setModalText] = useState('Are you sure to delete this item ?');
@@ -28,7 +29,9 @@ const Saved = () => {
     }
 
     useEffect(() => {
-        getData();
+        if (token && user) {
+            getData();
+        }
     }, []);
 
     async function getData() {

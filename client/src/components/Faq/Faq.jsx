@@ -1,7 +1,7 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import './Faq.css'
-import formula from '../assets/formula.png'
+import formula from '../../assets/formula.png'
 
 const Faq = () => {
 
