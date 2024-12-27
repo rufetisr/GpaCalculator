@@ -8,12 +8,15 @@ import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import context from '../../context/Context';
+import Loader from '../../components/Loader/Loader';
 
 function Login() {
     // const { setUser } = useContext(context);
 
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const handleClose = () => setShowModal(false);
 
     const server_url = import.meta.env.VITE_SERVER_URL;
@@ -28,6 +31,7 @@ function Login() {
         },
         validationSchema: LoginSchema,
         onSubmit: async (values) => {
+            setLoading(true);
             try {
                 const res = await fetch(`${server_url}/login`, {
                     method: 'POST',
@@ -58,12 +62,15 @@ function Login() {
                         email: data?.data?.email,
                     }))
 
-                    setTimeout(() => {
-                        navigate('/home')
-                    }, 1200)
+                    // setTimeout(() => {
+                    navigate('/home')
+                    // }, 1200)
                 }
             } catch (error) {
                 toast.error(error.message)
+            }
+            finally {
+                setLoading(false);
             }
 
 
@@ -78,46 +85,50 @@ function Login() {
 
     return (
         <div className='login-div'>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input onChange={handleChange} type="email" id="email" />
-                {errors.email && <span className="error-message">{errors.email}</span>}
+            {
+                !loading ?
+                    <>
+                        <h2>Login</h2>
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="email">Email</label>
+                            <input onChange={handleChange} type="email" id="email" />
+                            {errors.email && <span className="error-message">{errors.email}</span>}
 
-                {
-                    show == true ?
-                        <FaEye className='hide-btn' onClick={showHidePassword} />
+                            {
+                                show == true ?
+                                    <FaEye className='hide-btn' onClick={showHidePassword} />
 
-                        :
-                        <FaEyeSlash className='hide-btn' onClick={showHidePassword} />
-                }
-                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '-10px' }}>
-                    <label htmlFor="password">Password</label>
-                    <input onChange={handleChange} type={!show ? "password" : "text"} id="password" />
-                    {errors.password && <span className="error-message">{errors.password}</span>}
-                </div>
+                                    :
+                                    <FaEyeSlash className='hide-btn' onClick={showHidePassword} />
+                            }
+                            <div style={{ display: 'flex', flexDirection: 'column', marginTop: '-10px' }}>
+                                <label htmlFor="password">Password</label>
+                                <input onChange={handleChange} type={!show ? "password" : "text"} id="password" />
+                                {errors.password && <span className="error-message">{errors.password}</span>}
+                            </div>
 
-                <button type='submit'>Login</button>
-            </form>
-            <Link to='/register'>You don't have an account ?</Link>
+                            <button type='submit'>Login</button>
+                        </form>
+                        <Link to='/register'>You don't have an account ?</Link>
 
-            <Modal show={showModal} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Information</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Please verify your email by using the link in your email!</Modal.Body>
-                <Modal.Footer>
-                    {/* <Button variant="secondary" onClick={handleClose}>
+                        <Modal show={showModal} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Information</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Please verify your email by using the link in your email!</Modal.Body>
+                            <Modal.Footer>
+                                {/* <Button variant="secondary" onClick={handleClose}>
                         Close
-                    </Button> */}
-                    <Button variant="primary" onClick={handleClose}>
-                        Ok
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                        </Button> */}
+                                <Button variant="primary" onClick={handleClose}>
+                                    Ok
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                        <ToastContainer />
 
-            <ToastContainer />
-
+                    </> : <Loader />
+            }
         </div>
 
     );
