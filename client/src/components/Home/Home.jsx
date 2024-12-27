@@ -12,6 +12,8 @@ import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import isTokenExpired from '../../utils/isTokenExpired'
 import logo from '../../assets/logo1.png'
+import packageJson from '../../../package.json'
+
 
 let arr1 = [<Section />, <Section />, <Section />]
 
@@ -25,7 +27,6 @@ const Home = () => {
   // const inp = useRef();
   // const { totalAct, setTotalAct } = useState('ac');
   let token = localStorage.getItem('token');
-
   const handleClose = () => setShowModal(false);
 
 
@@ -412,7 +413,7 @@ const Home = () => {
 
         <div className='flex'>
           <p className='small-text'>Built by <a className='owner' href="https://portfolio-70u8.onrender.com/" target='_blank'>rufat isgander</a> </p>
-          <span className='smaller-text'>© personal website 2023</span>
+          <span className='smaller-text'>© personal website 2023. v{packageJson.version}</span>
         </div>
       </footer >
 
