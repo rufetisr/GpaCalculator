@@ -50,6 +50,7 @@ const Navbar = () => {
             // Hide the navbar
             document.querySelector(".navbar").style.display = "none";
             document.querySelector(".home").style.marginLeft = "-37px";
+            document.querySelector(".save").style.display = "none";
 
         }
     }, [hideNavbar]);
