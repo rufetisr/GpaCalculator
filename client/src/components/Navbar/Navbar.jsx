@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GiGraduateCap } from 'react-icons/gi'
 import * as FiIcons from 'react-icons/fi'
 import * as BiIcons from 'react-icons/bi'
@@ -8,7 +8,7 @@ import * as AiIcons from 'react-icons/ai'
 import * as RiIcons from 'react-icons/ri'
 import * as FaIcons from 'react-icons/fa'
 import { NavbarData } from './NavbarData';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { IconContext } from 'react-icons/lib';
 import './Navbar.css'
 import { useState, useRef } from "react";
@@ -23,6 +23,10 @@ const Navbar = () => {
     const [showModal, setShowModal] = useState(false);
     const [modalText, setModalText] = useState('You want to logout from this account ?');
     let token = localStorage.getItem('token');
+
+    const location = useLocation();
+    const hideNavbar = new URLSearchParams(location.search).get("hideNavbar");
+
 
     const handleClose = () => {
         setShowModal(false);
@@ -41,6 +45,13 @@ const Navbar = () => {
             navg('/login')
         }
     }
+    useEffect(() => {
+        if (hideNavbar == "true") {
+            // Hide the navbar
+            document.querySelector(".navbar").style.display = "none";
+        }
+    }, [hideNavbar]);
+
     return (
         <div className={`navbar ${navActive}`} >
 
