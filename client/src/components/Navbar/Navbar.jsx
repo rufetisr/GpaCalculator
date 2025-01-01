@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GiGraduateCap } from 'react-icons/gi'
 import * as FiIcons from 'react-icons/fi'
 import * as BiIcons from 'react-icons/bi'
@@ -8,21 +8,27 @@ import * as AiIcons from 'react-icons/ai'
 import * as RiIcons from 'react-icons/ri'
 import * as FaIcons from 'react-icons/fa'
 import { NavbarData } from './NavbarData';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { IconContext } from 'react-icons/lib';
 import './Navbar.css'
 import { useState, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import context from '../../context/Context';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
     const [navActive, setNav] = useState('');
+    const { t } = useTranslation();
     const navg = useNavigate();
     const { user } = useContext(context);
     const [showModal, setShowModal] = useState(false);
-    const [modalText, setModalText] = useState('You want to logout from this account ?');
+    const [modalText, setModalText] = useState('');
     let token = localStorage.getItem('token');
+
+    const location = useLocation();
+    const hideNavbar = new URLSearchParams(location.search).get("hideNavbar");
+
 
     const handleClose = () => {
         setShowModal(false);
@@ -33,6 +39,7 @@ const Navbar = () => {
     }
 
     const logOut = () => {
+        setModalText(t('logout_confirmation'))
         if (token) {
 
             localStorage.removeItem('token')
@@ -41,6 +48,16 @@ const Navbar = () => {
             navg('/login')
         }
     }
+    useEffect(() => {
+        if (hideNavbar == "true") {
+            // Hide the navbar
+            document.querySelector(".navbar").style.display = "none";
+            document.querySelector(".home").style.marginLeft = "-37px";
+            document.querySelector(".save").style.display = "none";
+
+        }
+    }, [hideNavbar]);
+
     return (
         <div className={`navbar ${navActive}`} >
 
@@ -54,7 +71,7 @@ const Navbar = () => {
 
             <ul className="nav-list">
                 {
-                    NavbarData.map((item, index) => {
+                    NavbarData(t).map((item, index) => {
                         return (
                             <li key={index}>
                                 <Link to={item.path} className={`${item.cName}`} >
@@ -95,15 +112,15 @@ const Navbar = () => {
             </div>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Information</Modal.Title>
+                    <Modal.Title>{t('information')}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{modalText}</Modal.Body>
+                <Modal.Body>{t('logout_confirmation')}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        No
+                        {t('no')}
                     </Button>
                     <Button variant="primary" onClick={logOut}>
-                        Yes
+                        {t('yes')}
                     </Button>
                 </Modal.Footer>
             </Modal>

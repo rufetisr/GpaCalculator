@@ -9,9 +9,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import context from '../../context/Context';
 import Loader from '../../components/Loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 function Login() {
     // const { setUser } = useContext(context);
+    const { t } = useTranslation();
 
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -29,7 +31,7 @@ function Login() {
             email: '',
             password: '',
         },
-        validationSchema: LoginSchema,
+        validationSchema: LoginSchema(t),
         onSubmit: async (values) => {
             setLoading(true);
             try {
@@ -88,9 +90,9 @@ function Login() {
             {
                 !loading ?
                     <>
-                        <h2>Login</h2>
+                        <h2>{t('login')}</h2>
                         <form onSubmit={handleSubmit}>
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">{t('email')}</label>
                             <input onChange={handleChange} type="email" id="email" />
                             {errors.email && <span className="error-message">{errors.email}</span>}
 
@@ -102,26 +104,26 @@ function Login() {
                                     <FaEyeSlash className='hide-btn' onClick={showHidePassword} />
                             }
                             <div style={{ display: 'flex', flexDirection: 'column', marginTop: '-10px' }}>
-                                <label htmlFor="password">Password</label>
+                                <label htmlFor="password">{t('password')}</label>
                                 <input onChange={handleChange} type={!show ? "password" : "text"} id="password" />
                                 {errors.password && <span className="error-message">{errors.password}</span>}
                             </div>
 
-                            <button type='submit'>Login</button>
+                            <button type='submit'>{t('login')}</button>
                         </form>
-                        <Link to='/register'>You don't have an account ?</Link>
+                        <Link to='/register'>{t('dont_have_account')}</Link>
 
                         <Modal show={showModal} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Information</Modal.Title>
+                                <Modal.Title>{t('information')}</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>Please verify your email by using the link in your email!</Modal.Body>
+                            <Modal.Body>{t('modal_message')}</Modal.Body>
                             <Modal.Footer>
                                 {/* <Button variant="secondary" onClick={handleClose}>
                         Close
                         </Button> */}
                                 <Button variant="primary" onClick={handleClose}>
-                                    Ok
+                                    {t('ok')}
                                 </Button>
                             </Modal.Footer>
                         </Modal>

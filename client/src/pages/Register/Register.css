@@ -3,9 +3,10 @@
     background-color: aquamarine;
     border: 0px;
     border-radius: 10px;
-    padding: 7px 16px;
+    padding: 8px 16px;
     margin: 10px 0;
     cursor: pointer;
+    align-self: center;
 }
 
 .register-div .error-message {
@@ -27,12 +28,13 @@
 }
 
 .register-div input {
-    padding: 6px 10px;
+    padding: 10px 14px;
     border-radius: 10px;
     outline: none;
     border: 0px;
     max-width: 300px;
     background-color: rgb(226, 215, 215);
+    font-size: medium;
 }
 
 .register-div form {
@@ -43,6 +45,6 @@
 
 .register-div .hide-btn {
     position: relative;
-    top: 39px;
+    top: 43px;
     left: 89%;
 }

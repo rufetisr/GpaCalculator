@@ -9,9 +9,11 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import context from '../../context/Context';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
     const { modalText, setModalText } = useContext(context);
+    const { t } = useTranslation();
 
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -27,7 +29,7 @@ const Register = () => {
             username: "",
             password: '',
         },
-        validationSchema: RegisterSchema,
+        validationSchema: RegisterSchema(t),
         onSubmit: async (values) => {
             try {
                 const res = await fetch(`${server_url}/create-account`, {
@@ -69,13 +71,13 @@ const Register = () => {
 
     return (
         <div className='register-div'>
-            <h2>Register</h2><br></br>
+            <h2>{t('register')}</h2><br></br>
             <form onSubmit={handleSubmit}>
 
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">{t('username')}</label>
                 <input onChange={handleChange} type="text" id="username" /><div></div>
                 {errors.username && <span className="error-message">{errors.username}</span>}
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t('email')}</label>
                 <input onChange={handleChange} type="email" id="email" />
                 {errors.email && <span className="error-message">{errors.email}</span>}
                 {
@@ -87,26 +89,26 @@ const Register = () => {
                 }
 
                 <div style={{ display: 'flex', flexDirection: 'column', marginTop: '-10px' }}>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{t('password')}</label>
                     <input onChange={handleChange} type={!show ? "password" : "text"} id="password" />
                     {errors.password && <span className="error-message">{errors.password}</span>}
 
                 </div>
-                <button type='submit'>Register</button>
+                <button type='submit'>{t('register')}</button>
             </form>
-            <Link to='/login'>Already have an account ?</Link>
+            <Link to='/login'>{t('already_have_account')}</Link>
             <ToastContainer />
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Information</Modal.Title>
+                    <Modal.Title>{t('information')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>{modalText}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('close')}
                     </Button>
                     <Button variant="primary" onClick={handleClose}>
-                        Ok
+                        {t('ok')}
                     </Button>
                 </Modal.Footer>
             </Modal>

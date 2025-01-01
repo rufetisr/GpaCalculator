@@ -244,13 +244,26 @@
     text-decoration: none;
     color: blue;
     text-transform: capitalize;
-    line-height: 0.4;
+    /* line-height: 0.9; */
+    /* min-width: 130px; */
+    max-width: 110px;
+
 }
 
 .footer {
     text-transform: capitalize;
     position: relative;
     border-top: 1px solid #11101d;
+}
+
+.footer .footer-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer .footer-div {
+    /* font-size: smaller; */
 }
 
 .footer .flex {
