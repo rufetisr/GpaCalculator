@@ -15,13 +15,15 @@ import './App.css'
 import Saved from './components/Saved/Saved'
 import isTokenExpired from './utils/isTokenExpired'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 function App() {
+  const { t, i18n } = useTranslation();
   const [count, setCount] = useState(3)
   const [cred, setCred] = useState();
   const [po, setPo] = useState();
   const [showModal, setShowModal] = useState(false);
-  const [modalText, setModalText] = useState('You need to login first!');
+  const [modalText, setModalText] = useState(t("login_required"));
   const server_url = import.meta.env.VITE_SERVER_URL;
   let token = localStorage.getItem('token');
 
@@ -32,6 +34,10 @@ function App() {
 
   // 
 
+  useEffect(() => {
+    const savedLang = localStorage.getItem('lang') || 'en';
+    i18n.changeLanguage(savedLang);
+  }, []);
   // const location = useLocation()
 
   const data = {

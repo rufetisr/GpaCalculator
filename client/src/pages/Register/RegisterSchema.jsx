@@ -1,18 +1,18 @@
 // import React from 'react';
 import * as Yup from 'yup';
 
-const RegisterSchema = Yup.object().shape({
+const RegisterSchema = (t) => Yup.object().shape({
     email: Yup.string()
-        .email('Invalid email')
-        .required('Required'),
+        .email(t('invalid_email'))
+        .required(t('required')),
     username: Yup.string()
-        .min(3, 'Name must be at least 3 characters')
-        .max(12, 'Name must be max 12 characters!')
-        .required('Required'),
+        .min(3, t('username_min'))
+        .max(12, t('username_max'))
+        .required(t('required')),
     password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .max(30, 'Password must be max 30 characters!')
-        .required('Required')
+        .min(8, t('password_min'))
+        .max(30, t('password_max'))
+        .required(t('required'))
 })
 
 

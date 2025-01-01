@@ -15,13 +15,15 @@ import { useState, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import context from '../../context/Context';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
     const [navActive, setNav] = useState('');
+    const { t } = useTranslation();
     const navg = useNavigate();
     const { user } = useContext(context);
     const [showModal, setShowModal] = useState(false);
-    const [modalText, setModalText] = useState('You want to logout from this account ?');
+    const [modalText, setModalText] = useState('');
     let token = localStorage.getItem('token');
 
     const location = useLocation();
@@ -37,6 +39,7 @@ const Navbar = () => {
     }
 
     const logOut = () => {
+        setModalText(t('logout_confirmation'))
         if (token) {
 
             localStorage.removeItem('token')
@@ -68,7 +71,7 @@ const Navbar = () => {
 
             <ul className="nav-list">
                 {
-                    NavbarData.map((item, index) => {
+                    NavbarData(t).map((item, index) => {
                         return (
                             <li key={index}>
                                 <Link to={item.path} className={`${item.cName}`} >
@@ -109,15 +112,15 @@ const Navbar = () => {
             </div>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Information</Modal.Title>
+                    <Modal.Title>{t('information')}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{modalText}</Modal.Body>
+                <Modal.Body>{t('logout_confirmation')}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        No
+                        {t('no')}
                     </Button>
                     <Button variant="primary" onClick={logOut}>
-                        Yes
+                        {t('yes')}
                     </Button>
                 </Modal.Footer>
             </Modal>

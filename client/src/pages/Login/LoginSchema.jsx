@@ -1,14 +1,14 @@
 // import React from 'react';
 import * as Yup from 'yup';
 
-const LoginSchema = Yup.object().shape({
+const LoginSchema = (t) => Yup.object().shape({
     email: Yup.string()
-        .email('Invalid email!')
+        .email(t('invalid_email'))
         .required('Required!'),
     password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .max(30, 'Password must be max 30 characters!')
-        .required('Required!')
+        .min(8, t('password_min'))
+        .max(30, t('password_max'))
+        .required(t('required'))
 })
 
 

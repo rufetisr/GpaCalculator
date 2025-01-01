@@ -1,41 +1,41 @@
-import * as AiIcons from 'react-icons/ai'
-import * as RiIcons from 'react-icons/ri'
-import * as FaIcons from 'react-icons/fa'
+import { AiFillHome } from 'react-icons/ai';
+import { RiQuestionAnswerFill, RiSettings4Fill } from 'react-icons/ri';
+import { FaUserGraduate } from 'react-icons/fa';
 import { LuDownload } from "react-icons/lu";
 import React from 'react'
 
-export const NavbarData = [
+
+export const NavbarData = (t) => [
     {
-        title: 'Home',
+        title: t('navbar_home'),
         path: '/home',
-        icon: <AiIcons.AiFillHome />,
+        icon: <AiFillHome />,
         cName: 'nav-text',
     },
     {
-        title: 'FAQ',
+        title: t('navbar_faq'),
         path: '/faq',
-        icon: <RiIcons.RiQuestionAnswerFill />,
+        icon: <RiQuestionAnswerFill />,
         cName: 'nav-text',
     },
     {
-        title: 'User',
+        title: t('navbar_user'),
         path: '/user',
-        icon: <FaIcons.FaUserGraduate />,
+        icon: <FaUserGraduate />,
         cName: 'nav-text',
     },
     {
-        title: 'Setting',
+        title: t('navbar_setting'),
         path: '/setting',
-        icon: <RiIcons.RiSettings4Fill />,
+        icon: <RiSettings4Fill />,
         cName: 'nav-text',
     },
     {
-        title: 'Saved',
+        title: t('navbar_saved'),
         path: '/saved',
         icon: <LuDownload />,
         cName: 'nav-text',
     },
-
 
 ]
 

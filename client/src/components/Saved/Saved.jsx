@@ -5,15 +5,17 @@ import { MdDelete } from "react-icons/md";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import calc from '../../utils/calc';
+import { useTranslation } from 'react-i18next';
 
 
 const Saved = () => {
+    const { t } = useTranslation();
 
     let token = localStorage.getItem('token');
     let user = localStorage.getItem('user');
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [modalText, setModalText] = useState('Are you sure to delete this item ?');
+    const [modalText, setModalText] = useState('');
     const [deleteIndex, setDeleteIndex] = useState(null); // Track the index to delete
 
     const server_url = import.meta.env.VITE_SERVER_URL;
@@ -24,6 +26,7 @@ const Saved = () => {
     }
 
     const handleOpen = (index) => {
+        setModalText(t('confirm_delete'));
         setDeleteIndex(index); // Set the index of the item to delete
         setShowModal(true);
     }
@@ -81,18 +84,18 @@ const Saved = () => {
     return (
 
         <div className='saved'>
-            <h4>Saved Information</h4>
+            <h4>{t('navbar_saved')}</h4>
             {token ?
 
                 <table>
                     <thead>
                         <tr>
-                            <th>Index</th>
-                            <th>Subject</th>
-                            <th>Point</th>
-                            <th>Credit</th>
-                            <th>GPA</th>
-                            <th>Actions</th>
+                            <th>{t('index')}</th>
+                            <th>{t('subject')}</th>
+                            <th>{t('point')}</th>
+                            <th>{t('credit')}</th>
+                            <th>{t('gpa')}</th>
+                            <th>{t('actions')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,7 +127,7 @@ const Saved = () => {
                                             onClick={() => handleOpen(index)}
                                             style={{ color: 'white', backgroundColor: 'red', border: 'none', cursor: 'pointer', padding: '2px 7px', fontSize: 'medium', display: 'flex', alignItems: 'center', borderRadius: '10px' }}
                                         >
-                                            Delete
+                                            {t('delete')}
                                             <MdDelete />
                                         </button>
                                     </td>
@@ -132,27 +135,27 @@ const Saved = () => {
                             )) :
                                 <>
                                     <br></br>
-                                    <p style={{ color: 'red' }}>No information</p>
+                                    <p style={{ color: 'red' }}>{t('no_information')}</p>
                                 </>
                         }
                     </tbody>
                 </table>
 
                 : <p style={{ color: "red" }}>
-                    <Link to={'/login'}>You need to login to save information</Link>
+                    <Link to={'/login'}>{t('login_prompt')}</Link>
                 </p>
             }
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Information</Modal.Title>
+                    <Modal.Title>{t('information')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>{modalText}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        No
+                        {t('no')}
                     </Button>
                     <Button variant="primary" onClick={handleDelete}>
-                        Yes
+                        {t('yes')}
                     </Button>
                 </Modal.Footer>
             </Modal>

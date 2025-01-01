@@ -6,13 +6,14 @@ import { useContext } from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { LuDownload } from "react-icons/lu";
 import { toast, ToastContainer } from 'react-toastify'
-
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import isTokenExpired from '../../utils/isTokenExpired'
 import logo from '../../assets/logo1.png'
 import packageJson from '../../../package.json'
+import LangSelectBox from '../LangSelectBox/LangSelectBox';
+import { useTranslation } from 'react-i18next';
 
 
 let arr1 = [<Section />, <Section />, <Section />]
@@ -28,7 +29,7 @@ const Home = () => {
   // const { totalAct, setTotalAct } = useState('ac');
   let token = localStorage.getItem('token');
   const handleClose = () => setShowModal(false);
-
+  const { t } = useTranslation();
 
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const Home = () => {
       setShowModal(false)
     }
     if (isExpired) {
-      setModalText('Your session has expired. Please sign in again.');
+      setModalText(t("session_expired"));
       setShowModal(true);
     }
   }, []);
@@ -59,6 +60,7 @@ const Home = () => {
 
     let token = localStorage.getItem('token')
     if (!token) {
+      setModalText(t("login_required"));
       setShowModal(true);
       // toast.warn('You need to login first!')
     }
@@ -362,12 +364,11 @@ const Home = () => {
   }
 
   return (
-    <div className='home'>
-      <h4>GPA Calculator</h4>
-
+    <div className="home">
+      <h4>{t('gpa_calculator')}</h4>
       <div className="calc-cont">
-        <div className='select-cont'>
-          <div className="home-text sel">Select count:</div>
+        <div className="select-cont">
+          <div className="home-text sel">{t('select_count')}</div>
           <select value={count} name="count" id="combobox" onChange={ChangeCount}>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
               <option key={num} value={num}>
@@ -377,63 +378,73 @@ const Home = () => {
           </select>
         </div>
 
-        <div className='list-cont'>
-          <input id='total' disabled placeholder='GPA: ' />
+        <div className="list-cont">
+          <input id="total" disabled placeholder="GPA: " />
           <div className="header">
-            <span>Point</span>
-            <span>Credit</span>
-            <span>Subject</span>
+            <span>{t('point')}</span>
+            <span>{t('credit')}</span>
+            <span>{t('subject')}</span>
           </div>
-          <ol className='home-ul'>
-            {
-              arr1?.map((item, index) => {
-                return (
-                  <li key={index} id={index}>{item}</li>
-                )
-              })
-            }
+          <ol className="home-ul">
+            {arr1?.map((item, index) => (
+              <li key={index} id={index}>
+                {item}
+              </li>
+            ))}
           </ol>
         </div>
-        <div style={{ display: 'flex', padding: '12px', columnGap: '10px' }} className='buttons'>
-          <button onClick={Calc} >Calculate</button>
-          <button onClick={Clear}>Clear</button>
-          <button className='save' onClick={Save}>
-            Save
+        <div style={{ display: 'flex', padding: '12px', columnGap: '10px' }} className="buttons">
+          <button onClick={Calc}>{t('calculate')}</button>
+          <button onClick={Clear}>{t('clear')}</button>
+          <button className="save" onClick={Save}>
+            {t('save')}
             <LuDownload className='icon' />
           </button>
         </div>
       </div>
 
-      <footer className='footer'>
-        <a href="https://portfolio-70u8.onrender.com/" target='_blank'>
-          rufat
-          <img src={logo} alt="logo" className="logo" />
-        </a><br></br>
-        <span className='small-text'>web developer</span>
-
-        <div className='flex'>
-          <p className='small-text'>Built by <a className='owner' href="https://portfolio-70u8.onrender.com/" target='_blank'>rufat isgander</a> </p>
-          <span className='smaller-text'>© personal website 2023. v{packageJson.version}</span>
+      <footer className="footer">
+        <div className='footer-div'>
+          <a href="https://portfolio-70u8.onrender.com/" target="_blank" rel="noreferrer">
+            rufat
+            <img src={logo} alt="logo" className="logo" />
+            <span className="small-text">{t('web_developer')}</span>
+          </a>
+          <LangSelectBox />
         </div>
-      </footer >
+        <br />
+        <div className="flex">
+          <p className="small-text">
+            {t('built_by')}{' '}
+            <a className="owner" href="https://portfolio-70u8.onrender.com/" target="_blank" rel="noreferrer">
+              rufat isgander
+            </a>
+          </p>
+          <span className="smaller-text">
+            {t('personal_website')}
+            {packageJson.version}
+          </span>
+        </div>
+      </footer>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Information</Modal.Title>
+          <Modal.Title>{t('information')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{modalText}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t('close')}
           </Button>
-          <Button variant="primary" onClick={() => { navigate('/login') }}>
-            Continue
+          <Button variant="primary" onClick={() => navigate('/login')}>
+            {t('continue')}
           </Button>
         </Modal.Footer>
       </Modal>
       <ToastContainer />
-    </div >
+    </div>
   );
+
 }
 
 export default Home;
