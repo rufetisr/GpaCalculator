@@ -2,10 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { GiGraduateCap } from 'react-icons/gi'
 import * as FiIcons from 'react-icons/fi'
 import * as BiIcons from 'react-icons/bi'
-import * as BsIcons from 'react-icons/bs'
 
-import * as AiIcons from 'react-icons/ai'
-import * as RiIcons from 'react-icons/ri'
 import * as FaIcons from 'react-icons/fa'
 import { NavbarData } from './NavbarData';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
