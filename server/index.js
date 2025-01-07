@@ -4,7 +4,6 @@ const cors = require('cors');
 const fs = require('fs')
 const app = express();
 const jwt = require('jsonwebtoken')
-const { v4: uuidv4 } = require('uuid');
 
 const registerSchema = require('./validations/register')
 const loginSchema = require('./validations/login')
@@ -24,6 +23,7 @@ const User = require("./models/User");
 
 const logger = require('./logger');
 const requestLogger = require('./middleware/loggerMiddleware');
+const { hashPassword, comparePassword } = require('./utils/hashPass');
 
 // public folder
 app.use(express.static('public'));
@@ -54,7 +54,7 @@ app.listen(PORT, () => {
 
 //api requests
 app.post('/create-account', async (req, res) => {
-    const { email, password, username } = req.body;
+    let { email, password, username } = req.body;
     const { error, value } = registerSchema.validate(req.body);
 
     if (error) {
@@ -64,11 +64,16 @@ app.post('/create-account', async (req, res) => {
         })
     }
 
+
     try {
         const isExist = await User.findOne({ email });
         if (isExist) {
             return res.status(400).json({ message: 'This user already exists!' });
         }
+
+        await hashPassword(password).then(hashed => {
+            password = hashed
+        })
 
         const newUser = new User({
             email,
@@ -159,8 +164,10 @@ app.post('/login', async (req, res) => {
 
 
     try {
-        const user = await User.findOne({ email, password }); // Use hashing for passwords in production.
-        if (!user) {
+        const user = await User.findOne({ email }); // Use hashing for passwords in production.
+        const isPasswordMatch = await comparePassword(password, user.password);
+
+        if (!user || !isPasswordMatch) {
             return res.status(401).json({ message: 'Unauthorized user access!', statusCode: 401 });
         }
 
