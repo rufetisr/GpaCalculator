@@ -16,6 +16,7 @@ import Saved from './components/Saved/Saved'
 import isTokenExpired from './utils/isTokenExpired'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+import Privacy from './pages/Privacy/Privacy'
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -52,7 +53,7 @@ function App() {
   const Layout = ({ children }) => (
     <div>
       <Navbar />
-      <div>{children}</div>
+      <div className='right-side-website'>{children}</div>
     </div>
   );
 
@@ -67,6 +68,7 @@ function App() {
             <Route path='/setting' element={<Layout><Setting /></Layout>}></Route>
             <Route path='/saved' element={<Layout><Saved /></Layout>}></Route>
             <Route path='/user' element={<Layout><User /></Layout>}></Route>
+            <Route path='/privacy-policy' element={<Layout><Privacy /></Layout>}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
             {/* <Route path="/*" element={<Layout><Home /></Layout>} /> */}
