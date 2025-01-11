@@ -7,7 +7,7 @@ const Privacy = () => {
             <h4>Privacy Policy</h4>
             {/* <p><strong>Effective Date:</strong> {new Date().toLocaleDateString()}</p> */}
             <p><strong>Last Updated:</strong> {"January 11, 2025"}</p>
-
+            <p>This Privacy Policy explains how the GPA Calculator Extension ("we," "our," or "us") collects, uses, and protects your information when you use our service. By using the extension, you agree to the terms outlined below.</p>
             <h5>1. Information We Collect</h5>
             <p>We collect and store the following types of information:</p>
             <ul>
