@@ -355,10 +355,14 @@ const Home = () => {
   const Clear = () => {
     let p = document.querySelectorAll('.point');
     let c = document.querySelectorAll('.credit')
+    let s = document.querySelectorAll('.subject')
     p.forEach(item => {
       item.value = null;
     })
     c.forEach(item => {
+      item.value = null;
+    })
+    s.forEach(item => {
       item.value = null;
     })
   }
