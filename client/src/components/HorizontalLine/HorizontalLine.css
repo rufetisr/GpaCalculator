@@ -1,0 +1,11 @@
+.line {
+    width: 50%;
+    border-bottom: 1px solid gray;
+    height: 8px;
+    margin: 0px 3px;
+}
+
+.or {
+    text-transform: uppercase;
+    font-size: small;
+}
