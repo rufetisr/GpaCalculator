@@ -9,16 +9,18 @@
     * Save your grades: Keep track of your grades and revise them later.
     * Language Options: Switch between English, Russian, and Azerbaijani easily.
     * Email Verification: To make sure your email is legit, you’ll get a verification link. You can log in only after verifying your email.
+    * Login with Google account
     
 * 🚀 Tech Stack:
     * Frontend:
         * Bootstrap
+        * react-router-dom
         * Formik
         * Yup
         * Toastify
         * i18next
+        * @react-oauth/google
         * react-icons
-        * react-router-dom
     * Backend
         * Express
         * Mongoose
