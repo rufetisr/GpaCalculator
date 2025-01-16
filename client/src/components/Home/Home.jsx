@@ -8,7 +8,7 @@ import { LuDownload } from "react-icons/lu";
 import { toast, ToastContainer } from 'react-toastify'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import isTokenExpired from '../../utils/isTokenExpired'
 import logo from '../../assets/logo1.png'
 import packageJson from '../../../package.json'
@@ -355,10 +355,14 @@ const Home = () => {
   const Clear = () => {
     let p = document.querySelectorAll('.point');
     let c = document.querySelectorAll('.credit')
+    let s = document.querySelectorAll('.subject')
     p.forEach(item => {
       item.value = null;
     })
     c.forEach(item => {
+      item.value = null;
+    })
+    s.forEach(item => {
       item.value = null;
     })
   }
@@ -421,8 +425,11 @@ const Home = () => {
             </a>
           </p>
           <span className="smaller-text">
-            {t('personal_website')}
-            {packageJson.version}
+
+            <Link to='/privacy-policy'>
+              {t('personal_website')}
+            </Link>
+            {' v' + packageJson.version}
           </span>
         </div>
       </footer>
