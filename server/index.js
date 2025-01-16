@@ -92,6 +92,92 @@ app.post('/create-account', async (req, res) => {
     }
 })
 
+app.post('/login-google-account', async (req, res) => {
+    let { credential } = req.body;
+    let googleUserInfo = jwt.decode(credential)
+
+
+    let { email, sub, name, email_verified } = googleUserInfo;
+
+    if (email_verified) {
+        const isExist = await User.findOne({ email });
+
+        if (!isExist) {
+
+            await hashPassword(sub).then(hashed => {
+                sub = hashed
+            })
+            console.log('name: ', name);
+
+            const newUser = new User({
+                email,
+                username: name,
+                password: sub, // Consider hashing passwords for security.
+                email_verified: true,
+            });
+
+            const savedUser = await newUser.save();
+            console.log('119: ', savedUser);
+
+            const token = generateToken(savedUser);
+
+            return res.status(200).json({ message: `${savedUser.username} account successfully created and logged in`, statusCode: 200, data: { username: savedUser.username, email: savedUser.email }, token });
+
+            // return res.status(400).json({ message: 'This user already exists!' });
+        }
+        else {
+            console.log('exists');
+            console.log(isExist);
+
+            const token = generateToken(isExist);
+
+            return res.status(200).json({ message: `${isExist.username} successfully logged in`, statusCode: 200, data: { username: isExist.username, email: isExist.email }, token });
+
+        }
+
+    }
+    else {
+        return res.status(403).json({ message: 'Please verify your email before login!', statusCode: 403 });
+    }
+    // console.log(googleUserInfo);
+
+
+    // return res.status(200).json({ message: `${user.username} successfully logged in`, statusCode: 200, data: { username: user.username, email: user.email }, token });
+
+    // const { error, value } = registerSchema.validate(req.body);
+
+    // if (error) {
+    //     logger.error('Validation Error', error.details[0].message);
+    //     return res.status(400).json({
+    //         message: 'Validation error!',
+    //     })
+    // }
+
+
+    // try {
+    //     const isExist = await User.findOne({ email });
+    //     if (isExist) {
+    //         return res.status(400).json({ message: 'This user already exists!' });
+    //     }
+
+    //     await hashPassword(password).then(hashed => {
+    //         password = hashed
+    //     })
+
+    //     const newUser = new User({
+    //         email,
+    //         username,
+    //         password: sub, // Consider hashing passwords for security.
+    //     });
+
+    //     const savedUser = await newUser.save();
+
+    //     const token = generateToken(user);
+    // } catch (err) {
+    //     console.error(err);
+    //     res.status(500).json({ message: 'Server error' });
+    // }
+});
 
 app.get('/verify-email', async (req, res) => {
     const { token } = req.query;

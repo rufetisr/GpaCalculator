@@ -12,7 +12,6 @@ import Loader from '../../components/Loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import HorizontalLine from '../../components/HorizontalLine/HorizontalLine';
-import { jwtDecode } from 'jwt-decode';
 
 function Login() {
     // const { setUser } = useContext(context);
@@ -84,14 +83,37 @@ function Login() {
 
     })
 
-    const LoginSuccess = (res) => { // google send response
-        console.log(res);
-        let userObj = jwtDecode(res.credential);
-        console.log(userObj);
+    const GoogleLoginSuccess = async (resp) => {
+
+        try {
+            const res = await fetch(`${server_url}/login-google-account`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(resp),
+            })
+            const data = await res.json();
+
+            if (data.statusCode == 200) {
+                toast.success(data.message)
+
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('user', JSON.stringify({
+                    username: data?.data?.username,
+                    email: data?.data?.email,
+                }))
+
+                navigate('/home')
+            }
+        }
+        catch (error) {
+            toast.error(error.message)
+        }
     }
 
-    const LoginFail = (res) => { // google send response
-        console.log(res);
+    const GoogleLoginFail = (res) => {
+        toast.error(res)
     }
 
     const showHidePassword = () => {
@@ -124,10 +146,12 @@ function Login() {
                                 </div>
 
                                 <button type='submit'>{t('login')}</button>
+                                <br></br>
                                 <HorizontalLine title='or' />
+                                <br></br>
                                 <GoogleLogin size="large"
-                                    onSuccess={LoginSuccess}
-                                    onError={LoginFail}
+                                    onSuccess={GoogleLoginSuccess}
+                                    onError={GoogleLoginFail}
                                     // auto_select='true'
                                     width="255px"
                                     useOneTap
