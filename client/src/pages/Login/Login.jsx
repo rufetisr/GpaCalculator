@@ -152,8 +152,7 @@ function Login() {
                                 <GoogleLogin size="large"
                                     onSuccess={GoogleLoginSuccess}
                                     onError={GoogleLoginFail}
-                                    // auto_select='true'
-                                    width="255px"
+                                    // auto_select='true'                                   
                                     useOneTap
                                     shape="circle"
                                     context="Sign in"
