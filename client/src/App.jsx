@@ -25,8 +25,6 @@ function App() {
   const [po, setPo] = useState();
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState(t("login_required"));
-  const server_url = import.meta.env.VITE_SERVER_URL;
-  let token = localStorage.getItem('token');
 
   const [user, setUser] = useState({
     username: "",

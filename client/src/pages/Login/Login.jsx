@@ -84,6 +84,7 @@ function Login() {
     })
 
     const GoogleLoginSuccess = async (resp) => {
+        setLoading(true);
 
         try {
             const res = await fetch(`${server_url}/login-google-account`, {
@@ -109,6 +110,8 @@ function Login() {
         }
         catch (error) {
             toast.error(error.message)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -156,10 +159,11 @@ function Login() {
                                     useOneTap
                                     shape="circle"
                                     context="Sign in"
-                                    logo_alignment="center"
+                                    logo_alignment="left"
                                 // cancel_on_tap_outside='true'
                                 />
                             </form>
+                            <br></br>
                             <Link to='/register'>{t('dont_have_account')}</Link>
 
                             <Modal show={showModal} onHide={handleClose}>
