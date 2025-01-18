@@ -24,6 +24,7 @@ const User = require("./models/User");
 const logger = require('./logger');
 const requestLogger = require('./middleware/loggerMiddleware');
 const { hashPassword, comparePassword } = require('./utils/hashPass');
+const usernameSchema = require('./validations/usernameSchema');
 
 // public folder
 app.use(express.static('public'));
@@ -42,7 +43,7 @@ let db_password = process.env.DB_PASSWORD;
 let cluster_name = process.env.CLUSTER_NAME;
 
 // to use save feature user needs to sign in first in order to get Token
-app.use(['/save-data', '/get-datatable', '/get-userdata', '/delete'], authMiddleware)
+app.use(['/save-data', '/get-datatable', '/get-userdata', '/delete', '/update-profile'], authMiddleware)
 app.use(['/create-account', '/save-data', '/delete'], requestLogger);
 
 const PORT = 3000;
@@ -97,7 +98,8 @@ app.post('/login-google-account', async (req, res) => {
     let googleUserInfo = jwt.decode(credential)
 
 
-    let { email, sub, name, email_verified } = googleUserInfo;
+    let { email, sub, name, email_verified, picture } = googleUserInfo;
+    console.log(googleUserInfo);
 
     if (email_verified) {
         const isExist = await User.findOne({ email });
@@ -113,20 +115,21 @@ app.post('/login-google-account', async (req, res) => {
                 username: name,
                 password: sub, // Consider hashing passwords for security.
                 email_verified: true,
+                profilePicture: picture
             });
 
             const savedUser = await newUser.save();
 
             const token = generateToken(savedUser);
 
-            return res.status(200).json({ message: `${savedUser.username} account successfully created and logged in`, statusCode: 200, data: { username: savedUser.username, email: savedUser.email }, token });
+            return res.status(200).json({ message: `${savedUser.username} account successfully created and logged in`, statusCode: 200, data: { username: savedUser.username, email: savedUser.email, profilePicture: savedUser.profilePicture }, token });
 
             // return res.status(400).json({ message: 'This user already exists!' });
         }
         else {
             const token = generateToken(isExist);
 
-            return res.status(200).json({ message: `${isExist.username} successfully logged in`, statusCode: 200, data: { username: isExist.username, email: isExist.email }, token });
+            return res.status(200).json({ message: `${isExist.username} successfully logged in`, statusCode: 200, data: { username: isExist.username, email: isExist.email, profilePicture: picture }, token });
         }
 
     }
@@ -228,6 +231,34 @@ app.post('/login', async (req, res) => {
     }
 })
 
+app.put('/update-profile', async (req, res) => {
+    const { newUsername } = req.body;
+
+    const { error } = usernameSchema.validate({
+        newUsername
+    })
+
+    if (error) {
+
+        return res.status(400).json({ message: 'Validation error!' });
+    }
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.id,
+            { username: newUsername }
+        )
+
+        if (!updatedUser) {
+
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        return res.status(200).json({ message: 'Username updated successfully', data: { username: updatedUser.username, email: updatedUser.email, profilePicture: updatedUser.profilePicture } });
+    } catch (error) {
+        return res.status(500).json({ message: 'Error while updating user profile' });
+    }
+})
 
 app.post('/save-data', async (req, res) => {
     let { points, credits, subjects } = req.body

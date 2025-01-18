@@ -18,10 +18,12 @@ const Navbar = () => {
     const [navActive, setNav] = useState('');
     const { t } = useTranslation();
     const navg = useNavigate();
-    const { user } = useContext(context);
+    // const { user } = useContext(context);
     const [showModal, setShowModal] = useState(false);
     const [modalText, setModalText] = useState('');
     let token = localStorage.getItem('token');
+
+    let user = JSON.parse(localStorage.getItem('user')) || null;
 
     const location = useLocation();
     const hideNavbar = new URLSearchParams(location.search).get("hideNavbar");
@@ -87,16 +89,20 @@ const Navbar = () => {
                 <div className="profile">
                     <div className="profile-details">
                         {/* <img src={user1} alt="" /> */}
-                        <FaIcons.FaUserGraduate className='img' />
-
+                        {
+                            user?.profilePicture
+                                ?
+                                <img src={user?.profilePicture} className='privateImg' alt="profile" />
+                                :
+                                (<FaIcons.FaUserGraduate className='img' />)
+                        }
                         <div className="name-job">
                             <div className="name">
-                                {token ? JSON.parse(localStorage.getItem('user'))?.username : 'no user'}
+                                <span title={token ? user?.username : 'no user'}>{token ? user?.username : 'no user'}</span>
                                 {/* {'user'} */}
                             </div>
                             <div className="job">
-                                {token ? JSON.parse(localStorage.getItem('user'))?.email : 'no email'}
-
+                                <span title={token ? user?.email : 'no email'}>{token ? user?.email : 'no email'}</span>
                             </div>
                         </div>
                     </div>

@@ -10,10 +10,10 @@ const DataSchema = new mongoose.Schema({
 
 // Define the user schema
 const UserSchema = new mongoose.Schema({
-    // _id: { type: String, required: true }, // Using UUID as the _id
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
+    profilePicture: { type: String, default: null },
     email_verified: { type: Boolean, default: false },
     data: { type: [DataSchema], default: [] }
 }, {

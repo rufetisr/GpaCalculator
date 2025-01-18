@@ -374,6 +374,12 @@
     border-radius: 12px;
 }
 
+.profile .profile-details .privateImg {
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
 .profile .profile-details .name-job {
     margin-left: 10px;
 }

@@ -14,7 +14,7 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import HorizontalLine from '../../components/HorizontalLine/HorizontalLine';
 
 function Login() {
-    // const { setUser } = useContext(context);
+    const { setUser } = useContext(context);
     const { t } = useTranslation();
 
     const [show, setShow] = useState(false);
@@ -60,7 +60,7 @@ function Login() {
                 }
                 else if (data.statusCode == 200) {
                     toast.success(data.message)
-
+                    setUser(data?.data)
                     localStorage.setItem('token', data.token)
                     localStorage.setItem('user', JSON.stringify({
                         username: data?.data?.username,
@@ -103,6 +103,7 @@ function Login() {
                 localStorage.setItem('user', JSON.stringify({
                     username: data?.data?.username,
                     email: data?.data?.email,
+                    profilePicture: data?.data?.profilePicture
                 }))
 
                 navigate('/home')
