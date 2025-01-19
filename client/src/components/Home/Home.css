@@ -25,9 +25,17 @@
     /* justify-content: center; */
     /* line-height: 30px; */
     margin: 15px 0px;
-    min-height: 350px;
+    /* min-height: 350px; */
+    min-height: 590px;
     height: 100%;
     width: 100%;
+
+}
+
+@media (min-width: 490px) {
+    .home .calc-cont {
+        min-height: 350px;
+    }
 
 }
 
