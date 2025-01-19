@@ -18,6 +18,7 @@ const Navbar = () => {
     const [navActive, setNav] = useState('');
     const { t } = useTranslation();
     const navg = useNavigate();
+    const navbarRef = useRef(null);
     // const { user } = useContext(context);
     const [showModal, setShowModal] = useState(false);
     const [modalText, setModalText] = useState('');
@@ -48,17 +49,35 @@ const Navbar = () => {
         }
     }
     useEffect(() => {
-        if (hideNavbar == "true") {
-            // Hide the navbar
-            document.querySelector(".navbar").style.display = "none";
-            document.querySelector(".home").style.marginLeft = "-37px";
-            document.querySelector(".save").style.display = "none";
 
-        }
-    }, [hideNavbar]);
+        const handleClickOutside = (event) => {
+            if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+                setNav('');
+            }
+        };
+
+        // Attach both events for desktop and mobile compatibility
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside);
+
+        // Cleanup both event listeners
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
+        };
+        // if (hideNavbar == "true") {
+        //     // Hide the navbar
+        //     document.querySelector(".navbar").style.display = "none";
+        //     document.querySelector(".home").style.marginLeft = "-37px";
+        //     document.querySelector(".save").style.display = "none";
+
+        // }
+
+
+    }, []);
 
     return (
-        <div className={`navbar ${navActive}`} >
+        <div ref={navbarRef} className={`navbar ${navActive}`} >
 
             <div className="logo-content">
                 <div className="logo">
