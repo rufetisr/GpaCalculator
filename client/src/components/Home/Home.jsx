@@ -14,6 +14,7 @@ import logo from '../../assets/logo1.png'
 import packageJson from '../../../package.json'
 import LangSelectBox from '../LangSelectBox/LangSelectBox';
 import { useTranslation } from 'react-i18next';
+import calc from '../../utils/calc';
 
 
 let arr1 = [<Section />, <Section />, <Section />]
@@ -351,6 +352,135 @@ const Home = () => {
         alert('Please fill everything!')
       }
     }
+    else if (count == 10) {
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
+
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
+
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
+
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
+
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
+
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
+
+      let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
+      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.children[1].value);
+
+      let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
+      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.children[1].value);
+
+      let p9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value);
+      let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.children[1].value);
+
+      let p10 = Number(document.querySelector('.home-ul').children[9].firstElementChild.firstElementChild.value);
+      let c10 = Number(document.querySelector('.home-ul').children[9].firstElementChild.children[1].value);
+
+      if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '' && p9 != '' && c9 != '' && p10 != '' && c10 != '') {
+
+        total = calc([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10], [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10])
+        inpTotal.value = `GPA: ${total}`;
+      }
+      else {
+        alert('Please fill everything!')
+      }
+    }
+    else if (count == 11) {
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
+
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
+
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
+
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
+
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
+
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
+
+      let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
+      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.children[1].value);
+
+      let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
+      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.children[1].value);
+
+      let p9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value);
+      let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.children[1].value);
+
+      let p10 = Number(document.querySelector('.home-ul').children[9].firstElementChild.firstElementChild.value);
+      let c10 = Number(document.querySelector('.home-ul').children[9].firstElementChild.children[1].value);
+
+      let p11 = Number(document.querySelector('.home-ul').children[10].firstElementChild.firstElementChild.value);
+      let c11 = Number(document.querySelector('.home-ul').children[10].firstElementChild.children[1].value);
+
+      if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '' && p9 != '' && c9 != '' && p10 != '' && c10 != '' && p11 != '' && c11 != '') {
+
+        total = calc([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11], [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11])
+        inpTotal.value = `GPA: ${total}`;
+      }
+      else {
+        alert('Please fill everything!')
+      }
+    }
+    else if (count == 12) {
+      let p1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.firstElementChild.value);
+      let c1 = Number(document.querySelector('.home-ul').children[0].firstElementChild.children[1].value);
+
+      let p2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.firstElementChild.value);
+      let c2 = Number(document.querySelector('.home-ul').children[1].firstElementChild.children[1].value);
+
+      let p3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.firstElementChild.value);
+      let c3 = Number(document.querySelector('.home-ul').children[2].firstElementChild.children[1].value);
+
+      let p4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.firstElementChild.value);
+      let c4 = Number(document.querySelector('.home-ul').children[3].firstElementChild.children[1].value);
+
+      let p5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.firstElementChild.value);
+      let c5 = Number(document.querySelector('.home-ul').children[4].firstElementChild.children[1].value);
+
+      let p6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.firstElementChild.value);
+      let c6 = Number(document.querySelector('.home-ul').children[5].firstElementChild.children[1].value);
+
+      let p7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.firstElementChild.value);
+      let c7 = Number(document.querySelector('.home-ul').children[6].firstElementChild.children[1].value);
+
+      let p8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.firstElementChild.value);
+      let c8 = Number(document.querySelector('.home-ul').children[7].firstElementChild.children[1].value);
+
+      let p9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.firstElementChild.value);
+      let c9 = Number(document.querySelector('.home-ul').children[8].firstElementChild.children[1].value);
+
+      let p10 = Number(document.querySelector('.home-ul').children[9].firstElementChild.firstElementChild.value);
+      let c10 = Number(document.querySelector('.home-ul').children[9].firstElementChild.children[1].value);
+
+      let p11 = Number(document.querySelector('.home-ul').children[10].firstElementChild.firstElementChild.value);
+      let c11 = Number(document.querySelector('.home-ul').children[10].firstElementChild.children[1].value);
+
+      let p12 = Number(document.querySelector('.home-ul').children[10].firstElementChild.firstElementChild.value);
+      let c12 = Number(document.querySelector('.home-ul').children[10].firstElementChild.children[1].value);
+
+      if (p1 != '' && p2 != '' && c1 != '' && c2 != '' && p3 != '' && c3 != '' && p4 != '' && c4 != '' && p5 != '' && c5 != '' && p6 != '' && c6 != '' && p7 != '' && c7 != '' && p8 != '' && c8 != '' && p9 != '' && c9 != '' && p10 != '' && c10 != '' && p11 != '' && c11 != '' && p12 != '' && c12 != '') {
+
+        total = calc([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12], [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12])
+        inpTotal.value = `GPA: ${total}`;
+      }
+      else {
+        alert('Please fill everything!')
+      }
+    }
   }
   const Clear = () => {
     let p = document.querySelectorAll('.point');
@@ -374,7 +504,7 @@ const Home = () => {
         <div className="select-cont">
           <div className="home-text sel">{t('select_count')}</div>
           <select value={count} name="count" id="combobox" onChange={ChangeCount}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((num) => (
               <option key={num} value={num}>
                 {num}
               </option>

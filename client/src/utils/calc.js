@@ -9,7 +9,7 @@ function calc(pointArr, creditArr) {
         creditSum += el;
     })
 
-    return (numerator / creditSum).toFixed(2);
+    return (numerator / creditSum).toFixed(3);
 
 }
 

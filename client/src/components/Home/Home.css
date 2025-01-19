@@ -1,6 +1,6 @@
 .home {
     position: absolute;
-    height: 100%;
+    /* height: 100%; */
     width: calc(100% - 78px);
     left: 78px;
     font-size: medium;
@@ -25,6 +25,7 @@
     /* justify-content: center; */
     /* line-height: 30px; */
     margin: 15px 0px;
+    min-height: 350px;
     height: 100%;
     width: 100%;
 
