@@ -6,7 +6,10 @@ import { toast, ToastContainer } from "react-toastify";
 
 const UserProfile = () => {
 
-    let { username, email, profilePicture } = JSON.parse(localStorage.getItem('user')) || 'empty';
+    let user = JSON.parse(localStorage.getItem('user')) || 'empty';
+
+    let { username, email, profilePicture } = user;
+
 
     const [newUsername, setNewUsername] = useState(username || '');
     const server_url = import.meta.env.VITE_SERVER_URL;
@@ -68,22 +71,26 @@ const UserProfile = () => {
                 }
 
             </div>
-            <form className='user-form' onSubmit={handleUpdate}>
-                <label htmlFor="username">
-                    Name
-                    <input
-                        type="text"
-                        id='username'
-                        defaultValue={username}
-                        onChange={(e) => setNewUsername(e.target.value)}
-                    />
-                </label>
-                <label htmlFor="username">
-                    Email
-                    <input type="text" id='username' defaultValue={email} disabled />
-                </label>
-                <button type='submit'>Update</button>
-            </form>
+            {
+                email && token ?
+                    (<form className='user-form' onSubmit={handleUpdate}>
+                        <label htmlFor="username">
+                            Name
+                            <input
+                                type="text"
+                                id='username'
+                                defaultValue={username}
+                                onChange={(e) => setNewUsername(e.target.value)}
+                            />
+                        </label>
+                        <label htmlFor="username">
+                            Email
+                            <input type="text" id='username' defaultValue={email} disabled />
+                        </label>
+                        <button type='submit'>Update</button>
+                    </form>)
+                    : <p>No user</p>
+            }
             <ToastContainer />
         </div>
     );
